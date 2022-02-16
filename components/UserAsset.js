@@ -2,10 +2,15 @@ import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import {UsersContext} from '../components/UsersContext'
 
+const API_KEY = env('ALPHA_API_KEY')
 
-async function getPrice(){
+async function getPrice(arr){
   //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
-  
+ let prices = []
+  console.log(API_KEY)
+  for(let i of arr){
+    console.log(i)
+  }
 }
 
 
@@ -23,6 +28,7 @@ function Assets(){
   const res = await axios.get(`/api/${user}` )
   console.log(res.data.stocks, 'res')
   const tickers = res.data.stocks
+  getPrice(tickers)
   setInfo(res.data.username)
   setStocks(res.data.stocks)
   setLoading(false)

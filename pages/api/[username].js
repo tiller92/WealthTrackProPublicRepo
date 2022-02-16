@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 
-
+//TODO: eventully implement smart search from aplphvantage
 
 export default function handler(req, res) {
     const { username } = req.query

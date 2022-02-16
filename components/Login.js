@@ -54,7 +54,7 @@ export default function SignUpForm(){
       localStorage.setItem('token', userInfo.token)
       console.log(localStorage) 
       setUser(userInfo.user.username)
-      Router.push('/')
+      Router.push(`/usr/${userInfo.user.username}`)
     }})
     compare()
       // set login state

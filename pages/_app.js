@@ -8,17 +8,15 @@ import Link from 'next/link';
 import useLocalStorage from '../components/UsersContext';
 
 
-//TODO: create a user object to pass to context:
-// check local first then send to home page for log in
-
 
 
 function MyApp({ Component, pageProps }) {
   
+  //TODO: layout effect works better but errors
   const [user, setUser] = useState(useContext(UsersContext))
-  useLayoutEffect(()=>{
+  useEffect(()=>{
     localStorage.username ? setUser(localStorage.username) : <Link href={'/'}></Link>
-  },[user]);
+  },[user,setUser]);
 
 
 

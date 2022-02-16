@@ -28,7 +28,6 @@ export default async function handler(req, res) {
             const username = info['username']
                 // get that users info from db with this
             const db_user = await getUser(username)
-            console.log(db_user, 'handler')
 
             const token = await jwt.sign({
                 data: {...db_user }

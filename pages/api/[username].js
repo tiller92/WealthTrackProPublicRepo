@@ -11,10 +11,13 @@ export default function handler(req, res) {
     let obj = {}
     async function main() {
         // ... you will write your Prisma Client queries here
-        const user = await prisma.user.findFirst({
+        const user = await prisma.user.findUnique({
             where: {
                 username: username,
             },
+            include: {
+                stocks: true,
+            }
         })
 
         console.log(user, 'api')

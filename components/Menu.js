@@ -10,7 +10,7 @@ export default function Menu(){
   }
   return(
    
-        <nav className="absolute box-border h-32 w-full p-4 border-4 flex justify-end">
+        <nav className="absolute top-0 right-0 h-32 w-16 m-4">
           <div
           onClick={handleChange}
           className=" box-content justify-center m-2 p-1 cursor-pointer">

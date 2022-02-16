@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 import jwt from 'jsonwebtoken'
 import SECRET_KEY from '/Users/ryantiller/Documents/wealth-trac-proto/wealth-trac-proto/config'
+import { setHttpAgentOptions } from "next/dist/server/config"
 
 
 const shh = SECRET_KEY.module
@@ -29,10 +30,12 @@ export default function handler(req, res) {
 
         })
 
-        console.log(user)
-        return { user }
+    
+        const json_user = user
+        console.log(user, 'json user')
+        return json_user
     }
-
+try{
     const newUser = main()
         .catch((e) => {
             throw e
@@ -40,9 +43,11 @@ export default function handler(req, res) {
         .finally(async() => {
             await prisma.$disconnect()
         })
-    res.status(200).json({ data: {...newUser } })
+     res.status(200).json({ newUser: newUser })
+}catch(err){
+    console.log(err)
 
-    use
+}
 }
 
 

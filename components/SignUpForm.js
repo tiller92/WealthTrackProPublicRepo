@@ -13,7 +13,6 @@ export default function SignUpForm(){
     password:'',
   }
   const [formData, setFormData] = useState(initailState)
-  const [local,setLocal] = useState(Boolean)
   const handleChange = (e) => {
     setFormData(data => ({
       ...data,
@@ -27,22 +26,34 @@ export default function SignUpForm(){
       const res = await axios.post('/api/adduser', {
       ...formData    
     })
+    //TODO: add this tie lcoal storage and then push to the user home page
+    if(res.status === 200){
     console.log(res)
-    setLocal(true)
+      const userInfo = res.data.newUser 
+      if (res === true){
+      // localStorage.setItem('user',{...userInfo.user})
+      localStorage.setItem('first_name', userInfo.newUser.first_name)
+      localStorage.setItem('last_name', userInfo.newUser.last_name)
+      localStorage.setItem('username', userInfo.newUser.username)
+      localStorage.setItem('id', userInfo.newUser.id)
+      localStorage.setItem('token', userInfo.token)
+      console.log(localStorage) 
+      setUser(userInfo.user.username)
+      Router.push(`/usr/${userInfo.user.username}`)
+    }
+      // set login state
+      }else{
+        //TODO: make and errorr component that takes an error and displays it
+        console.log('error occurred')
+        
+      }
+
     }
     
     addUser()
     setFormData(initailState)
     
   }
-
-  useEffect(()=>{
-    
-    console.log(localStorage)
-  },[local])
-
-
-  
   return(
     <>
     

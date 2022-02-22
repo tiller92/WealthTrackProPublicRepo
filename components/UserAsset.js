@@ -3,20 +3,19 @@ import { useContext, useEffect, useState } from "react"
 import {UsersContext} from '../components/UsersContext'
 import {ALPHA_API_KEY} from '../secret'
 import {getTimeAndDate} from '../lib/timeAndDate'
+import { NetWorthContext } from '../components/NetWorthContext';
 
 
 
 async function getPrice(arr){
   //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
- 
+  
   const date = getTimeAndDate()
 
   const total = []
   
   for(let stock in arr){
-    console.log(arr[stock].ticker)
-    console.log(date  )
-   
+
     let res = await axios.get( `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${arr[stock].ticker}&apikey=${ALPHA_API_KEY}`)
     console.log(res['data']['Time Series (Daily)'])
     let obj = {
@@ -30,14 +29,8 @@ async function getPrice(arr){
   for(let i of total){
       i.stockValue = i.price * i.shares 
   }
-  console.log(total)
   return total
-
-
-
   }
-
-
 
 function Assets(){
   // Loads the users stocks to ETFs and then gets the current price
@@ -46,14 +39,14 @@ function Assets(){
   const [isLoading, setLoading] = useState(false)
   const [stocks, setStocks] = useState([])
   const [userTotals, setUserTotals] = useState([])
- 
 
+  const currentNet = useContext(NetWorthContext)
+  console.log(currentNet, 'before')
   
   useEffect(()=>{
   async function get(){
   if(user){
   const res = await axios.get(`/api/${user}` )
-  console.log(res.data.stocks, 'res')
   const tickers = res.data.stocks
   setUserTotals(await getPrice(tickers))
   setInfo(res.data.username)
@@ -65,7 +58,11 @@ function Assets(){
 get()
 },[user])
 
-useEffect(()=>{console.log(userTotals)},[userTotals])
+useEffect(()=>{
+  currentNet.test = 'changed'
+  currentNet.stocksTotal = 10
+  console.log(userTotals)},[userTotals,setUserTotals])
+
 //TODO: make this a table. Need to have an edit option
   return (
     <>

@@ -12,6 +12,7 @@
     "@prisma/client": "^3.9.1",
     "axios": "^0.25.0",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.0",
     "jsonwebtoken": "^8.5.1",
     "next": "12.0.10",
     "prisma": "^3.9.1",

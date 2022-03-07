@@ -16,6 +16,9 @@ model User {
   username   String @unique
   password   String
   stocks Userstocks[]
+  crypto Usercrypto[]
+  realestate Userrealestate[]
+  debt Userdebt[]
 }
 
 model Userstocks {
@@ -25,3 +28,30 @@ model Userstocks {
   owner User @relation(fields: [ownerName],references: [username])
   ownerName String
 }
+
+model Usercrypto {
+   id  Int @id @default(autoincrement())
+  name String
+  shares Int
+  owner User @relation(fields: [ownerName],references: [username])
+  ownerName String
+}
+
+model Userrealestate {
+  id  Int @id @default(autoincrement())
+  name String
+  value Int
+  owner User @relation(fields: [ownerName],references: [username])
+  ownerName String
+}
+
+model Userdebt {
+  id  Int @id @default(autoincrement())
+  type String
+  interest Int
+  debt Int
+  owner User @relation(fields: [ownerName],references: [username])
+  ownerName String
+}
+
+

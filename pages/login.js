@@ -7,7 +7,7 @@ export default function Home() {
     return (
       <>
       <nav>
-        <Menu></Menu>
+       <Menu></Menu>
       </nav>
       <Login></Login>
       </>

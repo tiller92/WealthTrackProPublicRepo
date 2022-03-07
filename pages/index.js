@@ -12,13 +12,13 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
   const user = useContext(UsersContext) 
- 
   const router = useRouter()
+  
   if(user){
     // load logged in pages
-   return router.push(`/usr/${user}`)
- 
   
+  return router.push(`/usr/${user}`)
+ 
   //load the no user page
   }else{
     return(
@@ -32,4 +32,6 @@ export default function Home() {
       </>
     )
   }
+
 }
+

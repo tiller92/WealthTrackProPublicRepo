@@ -2,7 +2,7 @@ import SignUpForm from "../components/SignUpForm"
 import Menu from '../components/Menu'
 
 
-export default function Home() {
+export default function HomeSignUp() {
     return (
       <>
       <nav>

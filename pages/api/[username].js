@@ -17,6 +17,9 @@ export default function handler(req, res) {
             },
             include: {
                 stocks: true,
+                crypto: true,
+                realestate: true,
+                debt: true,
             }
         })
 

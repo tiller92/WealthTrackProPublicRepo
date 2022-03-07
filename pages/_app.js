@@ -8,8 +8,6 @@ import Link from 'next/link';
 import useLocalStorage from '../components/UsersContext';
 
 
-
-
 function MyApp({ Component, pageProps }) {
   
   //TODO: layout effect works better but errors

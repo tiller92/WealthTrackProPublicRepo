@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { NetWorthContext } from "./NetWorthContext"
 
 
-export default function NetWorth({stockTotalsValue,cryptoTotalValue, realestateTotalsValue}){
+export default function NetWorth({stockTotalsValue,cryptoTotalValue, realestateTotalsValue,debtTotalsValue}){
   // get the totals from all the other compenents. Want this to rerender with any change in other components
 
-  const netWorth = (stockTotalsValue + cryptoTotalValue + realestateTotalsValue)
+  const netWorth = (stockTotalsValue + cryptoTotalValue + realestateTotalsValue - debtTotalsValue)
 
   return ( 
   <>

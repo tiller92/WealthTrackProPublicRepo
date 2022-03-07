@@ -34,6 +34,10 @@ const handleRealestateSubmit = (e) =>{
   e.preventDefault()
   router.push(`/usr/${user}/addRealestate`)
 }
+const handleDebtSubmit = (e) =>{
+  e.preventDefault()
+  router.push(`/usr/${user}/addDebt`)
+}
 //get the net worth state from 
 
 // checks for user
@@ -55,7 +59,7 @@ useEffect(()=>{
     <main>
     <div className="grid grid-cols-3 ">
     
-    <NetWorth stockTotalsValue={stockTotalsValue} cryptoTotalValue={cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
+    <NetWorth debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue={cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
 
     <UserAsset value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
 
@@ -69,7 +73,15 @@ useEffect(()=>{
 
     <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleRealestateSubmit}>add Realestate</button></div>
 
+    <div className="space"></div>
+
     <Debt setDebtTotalValue={setDebtTotalValue}></Debt>
+
+    <div className="space"></div>
+
+    <div className="space"></div>
+
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleDebtSubmit}>add Debt</button></div>
 
     </div>
     </main>

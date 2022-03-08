@@ -28,6 +28,7 @@ export default function AddStockForm(){
     // sends login data to api update user state
     e.preventDefault()
     async function findUserInfo(){
+        console.log(formData)
         const res = await axios.post('/api/addDebt',{
          ...formData,
          username:user
@@ -60,7 +61,7 @@ const router = useRouter()
     <label htmlFor="debt">debt value</label>
     <input 
     id="debt"
-    type="integer" 
+    type="float" 
     name='debt' 
     value={formData.debt} 
     placeholder="current debt total" 

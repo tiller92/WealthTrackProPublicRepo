@@ -6,16 +6,15 @@ const prisma = new PrismaClient()
 export default async function handler(req, res) {
 
     const new_stock = req.body
-    console.log(new_stock.type)
-    
+    console.log(new_stock)
+
     async function main() {
         const userdebt = await prisma.Userdebt.create({
-            data:
-            {
-                type:new_stock.type,
-                debt:parseInt(new_stock.debt),
-                interest:parseInt(new_stock.interest),
-                owner:{connect:{username: new_stock.username}}
+            data: {
+                type: new_stock.type,
+                debt: parseFloat(new_stock.debt),
+                interest: parseFloat(new_stock.interest),
+                owner: { connect: { username: new_stock.username } }
             }
         })
     }

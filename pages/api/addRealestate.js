@@ -11,13 +11,13 @@ export default async function handler(req, res) {
         const userreal = await prisma.Userrealestate.create({
             data: {
                 name: new_real.name,
-                value: parseInt(new_real.value),
+                value: parseFloat(new_real.value),
                 owner: { connect: { username: new_real.username } }
             }
         })
 
     }
-    
+
     const realestate = await main()
     res.status(201).json({ data: realestate }, 'add real test')
 }

@@ -21,6 +21,7 @@ const [realestateTotalsValue, setRealestateTotalValue] = useState(0)
 const [debtTotalsValue, setDebtTotalValue] = useState(0)
 
 const user = useContext(UsersContext)
+
 const handleStockSubmit = (e) =>{
   // sends login data to api update user state
   e.preventDefault()
@@ -38,6 +39,7 @@ const handleDebtSubmit = (e) =>{
   e.preventDefault()
   router.push(`/usr/${user}/addDebt`)
 }
+
 //get the net worth state from 
 
 // checks for user
@@ -56,9 +58,11 @@ useEffect(()=>{
     <Menu></Menu>
     </nav>
     
-    <main>
-    <div className="grid grid-cols-3 ">
+    <main className="flex justify-center">
+    <div className="profile-home border-x-2 shadow-lg h-screen  w-10/12 ">
+    <div className="grid grid-cols-3 h-100 ">
     
+
     <NetWorth debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue={cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
 
     <UserAsset value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
@@ -83,6 +87,7 @@ useEffect(()=>{
 
     <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleDebtSubmit}>add Debt</button></div>
 
+    </div>
     </div>
     </main>
     </>

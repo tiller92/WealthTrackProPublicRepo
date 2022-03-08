@@ -4,8 +4,7 @@ import {UsersContext} from '../components/UsersContext'
 import {ALPHA_API_KEY} from '../secret'
 import {getTimeAndDate} from '../lib/timeAndDate'
 import { NetWorthContext } from '../components/NetWorthContext';
-
-
+import {round} from '../lib/round'
 
   async function getPrice(arr){
     //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
@@ -16,7 +15,7 @@ import { NetWorthContext } from '../components/NetWorthContext';
       let res = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${arr[stock].ticker}&apikey=${ALPHA_API_KEY}`)
       let obj = {
               ticker: arr[stock].ticker,
-              price:res['data']['Time Series (Daily)'][date]['4. close'],
+              price:round(res['data']['Time Series (Daily)'][date]['4. close'],2),
               shares:arr[stock].shares,
               stockValue:0,
             }
@@ -24,7 +23,8 @@ import { NetWorthContext } from '../components/NetWorthContext';
     }
   
     for(let i of total){
-        i.stockValue = i.price * i.shares 
+        i.stockValue = round(i.price * i.shares, 2)
+        
     }
     return total
     }
@@ -39,6 +39,7 @@ function Assets({setStockTotalValue}){
   const [isLoading, setLoading] = useState(false)
   const [stocks, setStocks] = useState([])
   const [userTotals, setUserTotals] = useState([])
+  const [portfolio, setPortfolio] = useState(0)
 
   const currentNet = useContext(NetWorthContext)
  
@@ -65,7 +66,9 @@ useEffect(()=>{
     allStocks += userTotals[i].stockValue
   }
   currentNet.stocksTotal = allStocks
-  totalStocks(allStocks)
+  let roundT = round(allStocks, 2)
+  totalStocks(roundT)
+  setPortfolio(roundT)
 }
 
 ,[setUserTotals,userTotals])
@@ -73,11 +76,19 @@ useEffect(()=>{
 //TODO: make this a table. Need to have an edit option
   return (
     <>
-    <div className="box-border h-64 w-128 p-2 border-2 flex justify-between">
-    <h1>{info} Stock Portfolio:</h1>
-    <ul>
+    <div className="box-content p-2 border-2 rounded-md m-3 ">
+    <ul className="ml-4 flex justify-center">
+      <li>Total Portfolio Value: ${portfolio}</li>
+    </ul>
+    <h1>Stock Portfolio:</h1>
+    <ul className="asset-list">
       {userTotals.map(stock => (
-        <li key={userTotals[stock.id]} >Ticker: {stock.ticker} #Shares: {stock.shares} Price: ${stock.price} Total: ${stock.stockValue} </li>
+        <ul>
+        <li className="asset" >{stock.ticker}</li>
+        <li className="asset ml-2">Shares: {stock.shares} </li>
+       <li className="asset ml-2"> Price: ${stock.price} </li>
+       <li className="asset ml-2">Total: ${stock.stockValue} </li>
+        </ul>
       ))}
     </ul>
     </div>

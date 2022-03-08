@@ -8,6 +8,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
 model User {
   id         Int    @id @default(autoincrement())
   first_name String
@@ -24,7 +26,7 @@ model User {
 model Userstocks {
   id  Int @id @default(autoincrement())
   ticker String
-  shares Int
+  shares Decimal
   owner User @relation(fields: [ownerName],references: [username])
   ownerName String
 }
@@ -32,7 +34,7 @@ model Userstocks {
 model Usercrypto {
    id  Int @id @default(autoincrement())
   name String
-  shares Int
+  shares Decimal
   owner User @relation(fields: [ownerName],references: [username])
   ownerName String
 }
@@ -40,7 +42,7 @@ model Usercrypto {
 model Userrealestate {
   id  Int @id @default(autoincrement())
   name String
-  value Int
+  value Decimal
   owner User @relation(fields: [ownerName],references: [username])
   ownerName String
 }
@@ -48,8 +50,8 @@ model Userrealestate {
 model Userdebt {
   id  Int @id @default(autoincrement())
   type String
-  interest Int
-  debt Int
+  interest Decimal
+  debt Decimal
   owner User @relation(fields: [ownerName],references: [username])
   ownerName String
 }

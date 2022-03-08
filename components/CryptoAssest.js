@@ -4,7 +4,7 @@ import {UsersContext} from '../components/UsersContext'
 import {ALPHA_API_KEY} from '../secret'
 import {getTimeAndDate} from '../lib/timeAndDate'
 import { NetWorthContext } from '../components/NetWorthContext';
-
+import{round} from '../lib/round'
 
 
 async function getPrice(arr){
@@ -15,14 +15,14 @@ async function getPrice(arr){
     let res = await axios.get( `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${arr[stock].name}&market=USD&apikey=${ALPHA_API_KEY}'`)
     let obj = {
             ticker: arr[stock].name,
-            price:res['data']['Time Series (Digital Currency Daily)'][date]['4a. close (USD)'],
+            price:round(res['data']['Time Series (Digital Currency Daily)'][date]['4a. close (USD)'],2),
             shares:arr[stock].shares,
             stockValue:0,
           }
           total.push(obj)
   }
   for(let i of total){
-      i.stockValue = i.price * i.shares 
+      i.stockValue = round(i.price * i.shares,2)
   }
   return total
   }
@@ -36,6 +36,7 @@ function Assets({setCryptoTotalValue}){
   const [info, setInfo] = useState(null)
   const [isLoading, setLoading] = useState(false)
   const [stocks, setStocks] = useState([])
+  const [portfolio, setPortfolio] = useState(0)
   const [userTotals, setUserTotals] = useState([])
 
   const currentNet = useContext(NetWorthContext)
@@ -63,7 +64,9 @@ useEffect(()=>{
     CryptoValue += userTotals[i].stockValue
   }
   currentNet.cryptoTotal = CryptoValue
-  totalCrypto(CryptoValue)
+  let cryptoRound = round(CryptoValue,2)
+  totalCrypto(cryptoRound)
+  setPortfolio(cryptoRound)
 }
 ,[setUserTotals,userTotals])
 
@@ -71,11 +74,27 @@ useEffect(()=>{
 //TODO: make this a table. Need to have an edit option
   return (
     <>
-    <div className="box-border h-64 w-128 p-2 border-2 flex justify-between">
-    <h1>{info} Crypto Assets:</h1>
-    <ul>
+    <div className="box-content p-2 border-2 rounded-md m-3">
+    <ul className="ml-4 flex justify-center">
+      <li>Total Portfolio Value: ${portfolio}</li>
+    </ul>
+    <h1>Crypto Assets:</h1>
+    <ul className="asset-list">
       {userTotals.map(stock => (
-        <li key={userTotals[stock.id]} >Ticker: {stock.ticker} #Shares: {stock.shares} Price: ${stock.price} Total: ${stock.stockValue} </li>
+        <ul>
+        <li>
+          {stock.ticker}
+          </li>
+          <li className="ml-2">
+           Shares: {stock.shares}
+          </li>
+          <li className="ml-2">
+            Price: ${stock.price} 
+            </li>
+            <li className="ml-2">
+            Total: ${stock.stockValue}
+             </li>
+             </ul>
       ))}
     </ul>
     </div>

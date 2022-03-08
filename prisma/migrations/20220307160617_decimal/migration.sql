@@ -1,0 +1,12 @@
+-- AlterTable
+ALTER TABLE "Usercrypto" ALTER COLUMN "shares" SET DATA TYPE DECIMAL(65,30);
+
+-- AlterTable
+ALTER TABLE "Userdebt" ALTER COLUMN "interest" SET DATA TYPE DECIMAL(65,30),
+ALTER COLUMN "debt" SET DATA TYPE DECIMAL(65,30);
+
+-- AlterTable
+ALTER TABLE "Userrealestate" ALTER COLUMN "value" SET DATA TYPE DECIMAL(65,30);
+
+-- AlterTable
+ALTER TABLE "Userstocks" ALTER COLUMN "shares" SET DATA TYPE DECIMAL(65,30);

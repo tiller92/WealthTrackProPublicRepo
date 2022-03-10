@@ -44,8 +44,8 @@ export default function Debt({setDebtTotalValue}){
   
   return ( 
     <>
-    <div className='col-span-1 box-content border-2 m-3 rounded-md' >
-      <div className="p-4">
+    <div className='col-span-2 box-content border-2 m-3 rounded-md' >
+      <div className="asset p-4">
       <ul className="ml-4 flex justify-center">
         <li>Total Debt: ${portfolio}</li>
       </ul>

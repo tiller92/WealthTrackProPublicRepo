@@ -59,7 +59,7 @@ useEffect(()=>{
     </nav>
     
     <main className="flex justify-center">
-    <div className="profile-home border-x-2 shadow-lg h-screen  w-10/12 ">
+    <div className="profile-home border-x-2 shadow-lg h-auto  w-10/12 ">
     <div className="grid grid-cols-3 h-100 ">
     
 
@@ -71,11 +71,11 @@ useEffect(()=>{
 
     <RealestateAssest setRealestateTotalValue={setRealestateTotalValue}></RealestateAssest>
     
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleStockSubmit}>Add Stock/ETF</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400" onClick={handleStockSubmit}>Add Stock/ETF</button></div>
 
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleCryptoSubmit}>Add Crypto</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400" onClick={handleCryptoSubmit}>Add Crypto</button></div>
 
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleRealestateSubmit}>add Realestate</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-2 shadow-lg rounded-lg bg-emerald-400 " onClick={handleRealestateSubmit}>add Realestate</button></div>
 
     <div className="space"></div>
 
@@ -83,9 +83,7 @@ useEffect(()=>{
 
     <div className="space"></div>
 
-    <div className="space"></div>
-
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-4 rounded-lg" onClick={handleDebtSubmit}>add Debt</button></div>
+    <div className="flex justify-center col-span-2" ><button className="box-border p-1 m-2 border-1 shadow-lg  rounded-lg bg-emerald-400" onClick={handleDebtSubmit}>add Debt</button></div>
 
     </div>
     </div>

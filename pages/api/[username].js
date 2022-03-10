@@ -23,7 +23,7 @@ export default function handler(req, res) {
             }
         })
 
-        console.log(user, 'api')
+        // console.log(user, 'api')
         return res.status(200).json(user)
     }
     return main()

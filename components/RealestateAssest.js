@@ -33,12 +33,12 @@ useEffect(()=>{
 
   return (
     <>
-     <div className="box-content p-2 border-2 m-3 rounded-md">
+     <div className="asset box-content p-2 border-2 m-3 rounded-md">
      <ul className="ml-4 flex justify-center">
       <li>Total Value: ${portfolio}</li>
     </ul>
     <h1>Realestate: </h1>
-    <ul>
+    <ul className="asset">
       {realestate.map(data => (
         <li key={data.id}>{data.name}: ${data.value}</li>
       ))}

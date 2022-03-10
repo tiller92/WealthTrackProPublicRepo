@@ -5,6 +5,7 @@ import axios from 'axios'
 import { UsersContext, checkUser } from '../components/UsersContext';
 import { createContex } from "react";
 import Link from 'next/link';
+import Head from 'next/head';
 import useLocalStorage from '../components/UsersContext';
 
 

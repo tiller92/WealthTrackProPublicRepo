@@ -5,6 +5,9 @@ import {ALPHA_API_KEY} from '../secret'
 import {getTimeAndDate} from '../lib/timeAndDate'
 import { NetWorthContext } from '../components/NetWorthContext';
 import{round} from '../lib/round'
+import DeleteAsset from '../components/DeleteAsset'
+import EditCryptoInLine from '../components/EditCryptoInLine'
+import DeleteCrypto from "../components/DeleteCrypto"
 
 
 async function getPrice(arr){
@@ -14,6 +17,7 @@ async function getPrice(arr){
   for(let stock in arr){
     let res = await axios.get( `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${arr[stock].name}&market=USD&apikey=${ALPHA_API_KEY}'`)
     let obj = {
+            id:arr[stock].id,
             ticker: arr[stock].name,
             price:round(res['data']['Time Series (Digital Currency Daily)'][date]['4a. close (USD)'],2),
             shares:arr[stock].shares,
@@ -74,16 +78,18 @@ useEffect(()=>{
 //TODO: make this a table. Need to have an edit option
   return (
     <>
-    <div className="box-content p-2 border-2 rounded-md m-3">
+    <div className="asset box-content p-2 border-2 rounded-md m-3">
     <ul className="ml-4 flex justify-center">
       <li>Total Portfolio Value: ${portfolio}</li>
     </ul>
     <h1>Crypto Assets:</h1>
-    <ul className="asset-list">
+    <ul className="asset">
       {userTotals.map(stock => (
         <ul>
         <li>
           {stock.ticker}
+          <DeleteCrypto id={stock.id} user={user}></DeleteCrypto>
+        <EditCryptoInLine id={stock.id} ></EditCryptoInLine>
           </li>
           <li className="ml-2">
            Shares: {stock.shares}

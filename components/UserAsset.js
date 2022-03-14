@@ -7,6 +7,7 @@ import { NetWorthContext } from '../components/NetWorthContext';
 import {round} from '../lib/round'
 import DeleteAsset from '../components/DeleteAsset'
 import EditInLine from './EditInLine'
+import { useRouter } from 'next/router'
 
   async function getPrice(arr){
     //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
@@ -23,28 +24,26 @@ import EditInLine from './EditInLine'
               stockValue:0,
             }
             total.push(obj)
+          
     }
-  
     for(let i of total){
         i.stockValue = round(i.price * i.shares, 2)
         
     }
     return total
     }
+  
 
-function Assets({setStockTotalValue , setRender}){
+function Assets({setStockTotalValue}){
   // Loads the users stocks to ETFs and then gets the current price
+  const [userTotals, setUserTotals] = useState([])
   const user = useContext(UsersContext)
-
+  const router = useRouter()
   const totalStocks = (num)=>{ setStockTotalValue(num)}
- 
   const [info, setInfo] = useState(null)
   const [isLoading, setLoading] = useState(false)
   const [stocks, setStocks] = useState([])
-  const [userTotals, setUserTotals] = useState([])
   const [portfolio, setPortfolio] = useState(0)
-
-  const currentNet = useContext(NetWorthContext)
  
   useEffect(()=>{
   async function get(){
@@ -55,53 +54,52 @@ function Assets({setStockTotalValue , setRender}){
   setInfo(res.data.username)
   setStocks(res.data.stocks)
   setLoading(false)
- 
+
   }
 }
 get()
-},[user])
+},[user,setUserTotals])
 
 useEffect(()=>{
-  currentNet.test = 'changed'
   let allStocks = 0
+  
   for(let i in userTotals){
-    // add up all stocks and pass it to networth context
     allStocks += userTotals[i].stockValue
   }
-  currentNet.stocksTotal = allStocks
   let roundT = round(allStocks, 2)
   totalStocks(roundT)
   setPortfolio(roundT)
 }
 
-,[setUserTotals,userTotals])
+,[user,setUserTotals])
 
-//TODO: make this a table. Need to have an edit option
   return (
     <>
-    <div className="asset grid-flow-row auto-rows-max  box-content p-2 border-2 rounded-md m-3 ">
-    <ul className="ml-4 flex justify-center">
-      <li>Total Portfolio Value: ${portfolio}</li>
+    <div  className="asset grid-flow-row  shadow-lg shadow-emerald-400 box-content p-2 border-2 rounded-md m-3 ">
+    <ul  className="ml-4 flex justify-center">
+      <li >Total Portfolio Value: ${portfolio}</li>
     </ul>
-    <h1>Stock Portfolio:</h1>
+    <h1 >Stock Portfolio:</h1>
     <ul className="asset-list">
       {userTotals.map(stock => (
-        <ul>
-        <li className="asset" >{stock.ticker} 
-         <DeleteAsset id={stock.id} user={user}></DeleteAsset>
-        <EditInLine id={stock.id} ></EditInLine>
+        <ul key={stock.id} >
+        <li key={stock.id +1}  className="asset" >{stock.ticker} 
+         <DeleteAsset key={stock.id +9}  user={user} id={stock.id}></DeleteAsset>
+        <EditInLine  key={stock.id +10} id={stock.id} ></EditInLine>
         </li>
-        <li className="asset ml-2">Shares: {stock.shares} </li>
-       <li className="asset ml-2"> Price: ${stock.price} </li>
-       <li className="asset ml-2">Total: ${stock.stockValue} </li>
-      
+        <li key={stock.id +4 } className="asset ml-2">Shares: {stock.shares} </li>
+       <li key={stock.id +5} className="asset ml-2"> Price: $ {stock.price} </li>
+       <li  key={stock.id +6}className="asset ml-2">Total: $ {stock.stockValue} </li>
+
         </ul>
-      ))}
+          ))}
     </ul>
     </div>
     </>
   )
+      
       }
+      
 
 
 export default Assets

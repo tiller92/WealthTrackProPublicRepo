@@ -30,12 +30,11 @@ export default function handler(req, res) {
 
         })
 
-    
+
         const json_user = user
-        console.log(user, 'json user')
         return json_user
     }
-try{
+
     const newUser = main()
         .catch((e) => {
             throw e
@@ -43,11 +42,8 @@ try{
         .finally(async() => {
             await prisma.$disconnect()
         })
-     res.status(200).json({ newUser: newUser })
-}catch(err){
-    console.log(err)
+    res.status(200).json({ data: 'new user created' })
 
-}
 }
 
 

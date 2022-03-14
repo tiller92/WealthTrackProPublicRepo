@@ -1,10 +1,18 @@
 import axios from "axios"
-import { useState, useEffect } from "react"
+import { useRouter } from "next/router"
+import { useState, useEffect, useContext } from "react"
+import { UsersContext } from "./UsersContext"
 
 
 
 export default function SignUpForm(){
+  const router = useRouter()
+  const user = useContext(UsersContext)
+  useEffect(()=>{
 
+  user ? router.push(`/usr/${user}`) : console.log('sign up!')
+  console.log(user)
+  },[user])
   const initailState = {
     username:'',
     first_name:'',
@@ -30,17 +38,10 @@ export default function SignUpForm(){
     if(res.status === 200){
     console.log(res)
       const userInfo = res.data.newUser 
-      if (res === true){
+      
       // localStorage.setItem('user',{...userInfo.user})
-      localStorage.setItem('first_name', userInfo.newUser.first_name)
-      localStorage.setItem('last_name', userInfo.newUser.last_name)
-      localStorage.setItem('username', userInfo.newUser.username)
-      localStorage.setItem('id', userInfo.newUser.id)
-      localStorage.setItem('token', userInfo.token)
-      console.log(localStorage) 
-      setUser(userInfo.user.username)
-      Router.push(`/usr/${userInfo.user.username}`)
-    }
+      router.push(`/login`)
+    
       // set login state
       }else{
         //TODO: make and errorr component that takes an error and displays it

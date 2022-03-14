@@ -2,6 +2,8 @@ import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { round } from "../lib/round"
 import { UsersContext } from "./UsersContext"
+import EditDebtInLine from '../components/EditDebtInLine'
+import DeleteDebt from '../components/DeleteDebt'
 
 export default function Debt({setDebtTotalValue}){
   const user = useContext(UsersContext)
@@ -44,15 +46,22 @@ export default function Debt({setDebtTotalValue}){
   
   return ( 
     <>
-    <div className='col-span-2 box-content border-2 m-3 rounded-md' >
+    <div className='col-span-2 box-content shadow-lg shadow-emerald-400 border-2 m-3 rounded-md' >
       <div className="asset p-4">
       <ul className="ml-4 flex justify-center">
         <li>Total Debt: ${portfolio}</li>
       </ul>
       <h1>Debt:</h1>
-      <ul>
+      <ul >
         {debt.map(val => (
-          <li className="asset" key={val.id}>{val.type }: ${val.debt} </li>
+          <>
+          <li className="asset" key={val.id}>{val.type }
+          <DeleteDebt  id={val.id} ></DeleteDebt>
+          <EditDebtInLine id={val.id} ></EditDebtInLine>
+           </li>
+          <li key={val.id +1} className="asset ml-1" >${val.debt}</li>
+          <li key={val.id +2} className="asset ml-1" > {val.interest}% </li>
+          </>
         ))}
       </ul>
     </div>

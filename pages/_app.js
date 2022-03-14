@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(useContext(UsersContext))
   useEffect(()=>{
     localStorage.username ? setUser(localStorage.username) : <Link href={'/'}></Link>
-  },[user,setUser]);
+  },[]);
 
 
 

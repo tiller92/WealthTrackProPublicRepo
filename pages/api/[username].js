@@ -1,7 +1,7 @@
 import { parseBody } from "next/dist/server/api-utils"
-import { PrismaClient } from '@prisma/client'
+import prisma from "../../lib/prismaExport"
 
-const prisma = new PrismaClient()
+
 
 
 //TODO: eventully implement smart search from aplphvantage

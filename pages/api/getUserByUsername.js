@@ -1,7 +1,6 @@
 import { parseBody } from "next/dist/server/api-utils"
-const { PrismaClient } = require('@prisma/client')
 
-const prisma = new PrismaClient()
+import prisma from "../../lib/prismaExport"
 
 
 export default function handler(req, res) {
@@ -12,7 +11,7 @@ export default function handler(req, res) {
             where: {
                 username: username,
             },
-          })
+        })
         console.log(user)
         return user
     }

@@ -34,7 +34,7 @@ import { useRouter } from 'next/router'
     }
   
 
-function Assets({setStockTotalValue}){
+function Assets({setStockTotalValue,stocksList}){
   // Loads the users stocks to ETFs and then gets the current price
   const [userTotals, setUserTotals] = useState([])
   const user = useContext(UsersContext)
@@ -44,17 +44,22 @@ function Assets({setStockTotalValue}){
   const [isLoading, setLoading] = useState(false)
   const [stocks, setStocks] = useState([])
   const [portfolio, setPortfolio] = useState(0)
- 
+  const [firstLoad, setFirstLoad] = useState(true)
+
+
   useEffect(()=>{
   async function get(){
-  if(user){
+  if(user && firstLoad == false){
   const res = await axios.get(`/api/${user}` )
   const tickers = res.data.stocks
   setUserTotals(await getPrice(tickers))
   setInfo(res.data.username)
   setStocks(res.data.stocks)
   setLoading(false)
-
+  }else{
+    //TODO: this renders the info from the server side info copy this into the other assets 
+    setUserTotals(stocksList)
+    setFirstLoad(false)
   }
 }
 get()

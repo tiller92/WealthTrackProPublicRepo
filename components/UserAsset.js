@@ -59,6 +59,7 @@ function Assets({setStockTotalValue,stocksList}){
   }else{
     //TODO: this renders the info from the server side info copy this into the other assets 
     setUserTotals(stocksList)
+    
     setFirstLoad(false)
   }
 }
@@ -67,7 +68,6 @@ get()
 
 useEffect(()=>{
   let allStocks = 0
-  
   for(let i in userTotals){
     allStocks += userTotals[i].stockValue
   }
@@ -76,7 +76,7 @@ useEffect(()=>{
   setPortfolio(roundT)
 }
 
-,[user,setUserTotals])
+,[user,userTotals])
 
   return (
     <>

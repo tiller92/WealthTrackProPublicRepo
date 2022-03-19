@@ -5,14 +5,16 @@ import {round} from '../lib/round'
 import DeleteRealestate from '../components/DeleteRealestate'
 import EditRealestateInLine from '../components/EditRealestateInLine'
 
-export default function realestate({setRealestateTotalValue}){
+export default function realestate({setRealestateTotalValue,realestateList}){
   const user = useContext(UsersContext)
   const [realestate,setRealestate] = useState([])
   const [portfolio, setPortfolio] = useState(0)
+  const [firstLoad, setFirstLoad] = useState(true)
+  
 
 
   useEffect(()=>{
-  if(user){
+  if(user && firstLoad == false){
   async function getUserRealestate(){
     const res = await axios.get(`/api/${user}`)
     if(res.data.realestate){
@@ -20,6 +22,9 @@ export default function realestate({setRealestateTotalValue}){
     }
   }
   getUserRealestate()
+}else{
+  setRealestate(realestateList)
+  setFirstLoad(false)
 }
 },[user])
 

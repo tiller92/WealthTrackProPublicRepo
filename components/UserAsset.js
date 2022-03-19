@@ -57,9 +57,8 @@ function Assets({setStockTotalValue,stocksList}){
   setStocks(res.data.stocks)
   setLoading(false)
   }else{
-    //TODO: this renders the info from the server side info copy this into the other assets 
+    // renders the info from the server
     setUserTotals(stocksList)
-    
     setFirstLoad(false)
   }
 }

@@ -5,20 +5,22 @@ import { UsersContext } from "./UsersContext"
 import EditDebtInLine from '../components/EditDebtInLine'
 import DeleteDebt from '../components/DeleteDebt'
 
-export default function Debt({setDebtTotalValue}){
+export default function Debt({setDebtTotalValue, debtList}){
   const user = useContext(UsersContext)
   const [debt, setDebt] = useState([])
   const [portfolio, setPortfolio] = useState(0)
+  const [firstLoad, setFirstLoad] = useState(true)
 
   useEffect(()=>{
-   if(user){
+   if(user && firstLoad == false){
      async function getDebt(){
-      
        const res = await axios.get(`/api/${user}`)
-      
       setDebt(res.data.debt)
      }
      getDebt()
+   }else{
+     setDebt(debtList)
+     setFirstLoad(false)
    }
   },[user])
 

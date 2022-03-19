@@ -37,16 +37,28 @@ export async function getServerSideProps({query}){
    return JSON.stringify(sList)
  }
 //TODO: you need make a server loaded list for each prop needed and drill them down. Use user asset as the example
- const crypto = []
- const realesate = []
- const debt = []
+ const cryptoList = setListCrypto(await user)
+ function setListCrypto(data){
+   const sList = [...data.crypto]
+   return JSON.stringify(sList)
+ }
+ const realestateList = setRealestateList(await user)
+ function setRealestateList(data){
+   const sList = [...data.realestate]
+   return  JSON.stringify(sList)
+ }
+ const debtList = setListDebt(await user)
+ function setListDebt(data){
+   const sList = [...data.debt]
+   return JSON.stringify(sList)
+ }
   return {
-    props: {stocksList, crypto, realesate, debt},
+    props: {stocksList, cryptoList, realestateList, debtList},
   }
 }
 
 
-export default function UserHome({stocksList}){
+export default function UserHome({stocksList, cryptoList,realestateList, debtList}){
 const router = useRouter()
 const [stockTotalsValue, setStockTotalValue] = useState(0)
 const [cryptoTotalValue, setCryptoTotalValue] = useState(0)
@@ -54,6 +66,9 @@ const [realestateTotalsValue, setRealestateTotalValue] = useState(0)
 const [debtTotalsValue, setDebtTotalValue] = useState(0)
 const user = useContext(UsersContext)
 const initStocksFromServer = JSON.parse(stocksList)
+const initCryptoFromServer = JSON.parse(cryptoList)
+const initRealestateFromServer = JSON.parse(realestateList)
+const initDebtFromServer = JSON.parse(debtList)
 
 const handleStockSubmit = (e) =>{
   e.preventDefault()
@@ -98,11 +113,11 @@ useEffect(()=>{
     </div>
 
     <div className="grid grid-cols-2 h-100 ">
-    <CryptoAsset setCryptoTotalValue={setCryptoTotalValue}></CryptoAsset>
-    <RealestateAssest setRealestateTotalValue={setRealestateTotalValue}></RealestateAssest>
+    <CryptoAsset cryptoList={initCryptoFromServer} setCryptoTotalValue={setCryptoTotalValue}></CryptoAsset>
+    <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}></RealestateAssest>
     <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400" onClick={handleCryptoSubmit}>Add Crypto</button></div>
     <div className="flex justify-center" ><button className="box-border p-1 m-2 border-2 shadow-lg rounded-lg bg-emerald-400 " onClick={handleRealestateSubmit}>add Realestate</button></div>
-    <Debt setDebtTotalValue={setDebtTotalValue}></Debt>
+    <Debt debtList={initDebtFromServer} setDebtTotalValue={setDebtTotalValue}></Debt>
     <div className="flex justify-center col-span-2" ><button className="box-border p-1 m-2 border-1 shadow-lg  rounded-lg bg-emerald-400" onClick={handleDebtSubmit}>add Debt</button></div>
 
     </div>

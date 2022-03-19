@@ -31,49 +31,44 @@ async function getPrice(arr){
   return total
   }
 
-function Assets({setCryptoTotalValue}){
+function Assets({setCryptoTotalValue,cryptoList}){
   // Loads the users stocks to ETFs and then gets the current price
   const user = useContext(UsersContext)
-
+  const [userTotals, setUserTotals] = useState([])
   const totalCrypto = (num)=>{setCryptoTotalValue(num)}
- 
   const [info, setInfo] = useState(null)
   const [isLoading, setLoading] = useState(false)
   const [stocks, setStocks] = useState([])
   const [portfolio, setPortfolio] = useState(0)
-  const [userTotals, setUserTotals] = useState([])
-
-
-  const currentNet = useContext(NetWorthContext)
+  const [firstLoad, setFirstLoad] = useState(true)
  
   useEffect(()=>{
   async function get(){
-  if(user){
+  if(user && firstLoad == false){
   const res = await axios.get(`/api/${user}` )
   const tickers = res.data.crypto
   setUserTotals(await getPrice(tickers))
   setInfo(res.data.username)
   setStocks(res.data.crypto)
   setLoading(false)
- 
+  }else{  
+    setUserTotals(cryptoList)
+    setFirstLoad(false)
   }
 }
 get()
-},[user])
+},[user,setUserTotals])
 
 useEffect(()=>{
-  currentNet.test = 'changed'
   let CryptoValue = 0
   for(let i in userTotals){
-    // add up all stocks and pass it to networth context
     CryptoValue += userTotals[i].stockValue
   }
-  currentNet.cryptoTotal = CryptoValue
   let cryptoRound = round(CryptoValue,2)
   totalCrypto(cryptoRound)
   setPortfolio(cryptoRound)
 }
-,[setUserTotals,userTotals])
+,[user,userTotals])
 
 
 //TODO: make this a table. Need to have an edit option
@@ -86,19 +81,19 @@ useEffect(()=>{
     <h1>Crypto Assets:</h1>
     <ul className="asset">
       {userTotals.map(stock => (
-        <ul>
-        <li>
+        <ul key={stock.id}>
+        <li key={stock.id +1}>
           {stock.ticker}
-          <DeleteCrypto id={stock.id} user={user}></DeleteCrypto>
-        <EditCryptoInLine id={stock.id} ></EditCryptoInLine>
+          <DeleteCrypto key={stock.id+2} id={stock.id} user={user}></DeleteCrypto>
+        <EditCryptoInLine key={stock.id +4}id={stock.id} ></EditCryptoInLine>
           </li>
-          <li className="ml-2">
+          <li key={stock.id+ 5} className="ml-2">
            Shares: {stock.shares}
           </li>
-          <li className="ml-2">
+          <li key={stock.id+ 6} className="ml-2">
             Price: ${stock.price} 
             </li>
-            <li className="ml-2">
+            <li key={stock.id+7}className="ml-2">
             Total: ${stock.stockValue}
              </li>
              </ul>

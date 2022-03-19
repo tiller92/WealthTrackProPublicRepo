@@ -29,11 +29,11 @@ if(user == ''){
 }else{
   return (
     <>
-  <div className="absolute m-5 top-2 right-15">
-  <button className="shadow-lg rounded-lg bg-emerald-400">Hello: {user}</button>
-  <button className="shadow-lg rounded-lg bg-emerald-400" onClick={handleLogout}>Logout</button>
-  <button className="shadow-lg rounded-lg bg-emerald-400" >Contact</button>
-  <button className="shadow-lg rounded-lg bg-emerald-400" >About</button>
+  <div className="relative top-20 float justify-center flex flex-col">
+  <button className="shadow-lg rounded-lg bg-emerald-400 m-1">Hello: {user}</button>
+  <button className="shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleLogout}>Logout</button>
+  <button className="shadow-lg rounded-lg bg-emerald-400 m-1" >Contact</button>
+  <button className="shadow-lg rounded-lg bg-emerald-400 m-1" >About</button>
   </div>
   </>
   )

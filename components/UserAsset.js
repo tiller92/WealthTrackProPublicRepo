@@ -79,7 +79,7 @@ useEffect(()=>{
 
   return (
     <>
-    <div  className="asset grid-flow-row  shadow-lg shadow-emerald-400 box-content p-2 border-2 rounded-md m-3 ">
+    <div  className="asset grid-flow-row w-full shadow-lg shadow-emerald-400 box-content p-2 border-2 rounded-md m-3 ">
     <ul  className="ml-4 flex justify-center">
       <li >Total Portfolio Value: ${portfolio}</li>
     </ul>

@@ -9,11 +9,13 @@ import RealestateAssest from "../../components/RealestateAssest"
 import Debt from "../../components/Debt"
 import axios from "axios"
 import prisma from "../../lib/prismaExport"
-
+import {AiFillPlusCircle} from 'react-icons/ai'
+ 
 //TODO: This will load the data you needfot the intail load that is rendering then the data will be refreshed by the use when they add things. it doesnt work
 export async function getServerSideProps({query}){
  const {username} = query
- console.log(username, 'server side')
+
+
  async function main() {
   // ... you will write your Prisma Client queries here
   const user = await prisma.user.findUnique({
@@ -70,10 +72,14 @@ const initCryptoFromServer = JSON.parse(cryptoList)
 const initRealestateFromServer = JSON.parse(realestateList)
 const initDebtFromServer = JSON.parse(debtList)
 
+
 const handleStockSubmit = (e) =>{
   e.preventDefault()
-  user ? router.push(`/usr/${user}/addstock`) : console.log('no user')
-  
+if(user){
+  router.push(`/usr/${user}/addstock`)
+}else{
+  window.location.reload()
+}
 }
 const handleCryptoSubmit = (e) =>{
   e.preventDefault()
@@ -92,10 +98,11 @@ const handleDebtSubmit = (e) =>{
 
 // checks for user
 useEffect(()=>{
+  !user ? console.log('no user') : console.log(user)
   if(localStorage.username == '' || localStorage.username == undefined){
    return router.push(`/`)
   }
-},[user])
+},[])
 
   return (
     <>
@@ -103,22 +110,23 @@ useEffect(()=>{
     <Menu></Menu>
     </nav>
     <main className="flex justify-center">
-    <div className="profile-home  h-auto  w-10/12 ">
+    <div className="profile-home  h-auto  w-11/12 ">
     <NetWorth debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue=
     {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
 
-    <div className="grid box box-content border-1  flex justify-center float-left">
+    <div className="grid border border-box border-1 flex justify-center float-left">
     <UserAsset stocksList={initStocksFromServer} value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg  rounded-lg bg-emerald-400" onClick={handleStockSubmit}>Add Stock/ETF</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg flex justify-center  rounded-lg bg-emerald-400" onClick={handleStockSubmit}><AiFillPlusCircle size={25} /> Stock/ETF</button></div>
     </div>
 
-    <div className="grid grid-cols-2 h-100 ">
+    <div className="border border-box grid grid-cols-2 h-auto w-auto">
     <CryptoAsset cryptoList={initCryptoFromServer} setCryptoTotalValue={setCryptoTotalValue}></CryptoAsset>
     <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}></RealestateAssest>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400" onClick={handleCryptoSubmit}>Add Crypto</button></div>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-2 shadow-lg rounded-lg bg-emerald-400 " onClick={handleRealestateSubmit}>add Realestate</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} /> Crypto</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-2 shadow-lg rounded-lg bg-emerald-400 flex justify-center  " onClick={handleRealestateSubmit}><AiFillPlusCircle size={25} /> Realestate</button></div>
     <Debt debtList={initDebtFromServer} setDebtTotalValue={setDebtTotalValue}></Debt>
-    <div className="flex justify-center col-span-2" ><button className="box-border p-1 m-2 border-1 shadow-lg  rounded-lg bg-emerald-400" onClick={handleDebtSubmit}>add Debt</button></div>
+    <div></div>
+    <div className="flex justify-center col-span-1" ><button className="box-border p-1 m-2 border-1 shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleDebtSubmit}><AiFillPlusCircle size={25} /> Debt</button></div>
 
     </div>
     </div>

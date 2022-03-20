@@ -3,9 +3,7 @@ import axios from 'axios'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import SECRET_KEY from '/Users/ryantiller/Documents/wealth-trac-proto/wealth-trac-proto/config'
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
+import prisma from '../../lib/prismaExport'
 
 async function getUser(username) {
     // get the user

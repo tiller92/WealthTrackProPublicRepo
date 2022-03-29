@@ -3,7 +3,8 @@ import bcrypt from 'bcryptjs'
 import { useState, useEffect,useLayoutEffect, createContext, useContext } from "react"
 import Link from "next/link"
 import { UsersContext } from "./UsersContext"
-import Router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
+import Menu from "./Menu"
 
 
 
@@ -22,10 +23,8 @@ export default function SignUpForm(){
   }
   const [formData, setFormData] = useState(initailState)
   const [user,setUser] = useState(useContext(UsersContext))
-  
-  // check local storage for a logged in user
+  const router = useRouter()  
 
- 
   const handleChange = (e) => {
     setFormData(data => ({
       ...data,
@@ -54,7 +53,7 @@ export default function SignUpForm(){
       localStorage.setItem('token', userInfo.token)
       console.log(localStorage) 
       setUser(userInfo.user.username)
-      Router.push(`/usr/${userInfo.user.username}`)
+      router.push(`/usr/${userInfo.user.username}`)
     }})
     compare()
       // set login state
@@ -72,11 +71,20 @@ export default function SignUpForm(){
 
   return(
     <>
-    <div className="relative top-64 box-border b-4 h-64 flex justify-center">
+    <nav className="flex justify-between">
+      <Menu></Menu>
+      <button onClick={()=>router.push(`/`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
+      >Home</button>
+    </nav>
+
+    <div className="flex justify-center">
+    <div className="border bg-emerald-400 shadow-slate-900 shadow-lg m-5 p-2 w-6/12 rounded-lg flex justify-center">
     
-    <form className="signUpForm" onSubmit={handleSubmit}>
-    <div className="grid grid-cols-2">
-    <label htmlFor="username">username</label>
+    <form className="" onSubmit={handleSubmit}>
+
+    <label htmlFor="username">
+      username
+      </label>
     <input 
     id="username"
     type="text" 
@@ -84,9 +92,11 @@ export default function SignUpForm(){
     value={formData.username}
     placeholder="username"
     onChange={handleChange}
-    autoComplete="new-username"/>
+    autoComplete="new-username"
+    className="p-1 m-2 border w-64"
+    />
 
-
+    <div>
     <label htmlFor="password">password</label>
     <input 
     id="password"
@@ -95,11 +105,17 @@ export default function SignUpForm(){
     value={formData.password} 
     placeholder="password" 
     onChange={handleChange} 
-    autoComplete="new-password"/>
+    autoComplete="new-password"
+    className="p-1 m-2 border w-64"
+    />
+</div>
+
+   
+    <div className="flex justify-center">
+      <button className="box-border p-2 m-2 shadow-lg bg-yellow-200 rounded-md">Login</button>
     </div>
-    <button className="box-border p-1 m-2 border-4 rounded-lg">Login</button>
-    
     </form>
+    </div>
     </div>
     </>
     )

@@ -3,6 +3,8 @@ import axios from "axios"
 import { UsersContext } from "../../../components/UsersContext"
 import { Router } from "react-router"
 import { useRouter } from "next/router"
+import Menu from '../../../components/Menu'
+import toast, { Toaster } from 'react-hot-toast'
 
 
 export default function AddStockForm(){
@@ -10,8 +12,8 @@ export default function AddStockForm(){
  
  const initailState = {
     type:'',
-    interest:0,
-    debt:0,
+    interest:'',
+    debt:'',
     username:user,
   }
   const [formData, setFormData] = useState(initailState)
@@ -33,6 +35,14 @@ export default function AddStockForm(){
          ...formData,
          username:user
         })
+        if(res.status == 201){
+          const debtAddedNotify = ()=> toast.success(`stock was succesfully added!`)
+          debtAddedNotify()
+        console.log(res, 'res from addstock ')
+        }else{
+          const errorToast = ()=>toast.error('sorry something went wrong')
+          errorToast()
+        }
     setFormData(initailState)
     
   }
@@ -43,11 +53,22 @@ const router = useRouter()
 
   return(
     <>
-    <div className="relative top-64 box-border b-4 h-64 flex justify-center">
+    <nav className="flex justify-between">
+      <Menu></Menu>
+      <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
+      >Home</button>
+    </nav>
+
+  <div className="flex justify-center"> 
     
-    <form className="signUpForm" onSubmit={handleSubmit}>
-    <div className="grid grid-cols-2">
-    <label htmlFor="type">type</label>
+  <div className="border bg-emerald-400 shadow-slate-900 shadow-lg m-5 p-2 w-6/12 rounded-lg flex justify-center ">
+
+    <form onSubmit={handleSubmit}>
+
+    <div className="flex justify-center">
+    <label htmlFor="type"
+    className="p-1 pt-3"
+    >Name</label>
     <input 
     id="type"
     type="text" 
@@ -55,10 +76,15 @@ const router = useRouter()
     value={formData.type}
     placeholder="Type of Debt (i.e 'mortgage')"
     onChange={handleChange}
-    autoComplete="new-type"/>
+    autoComplete="new-type"
+    className="p-1 m-2 border w-64"
+    />
+    </div>
 
-
-    <label htmlFor="debt">debt value</label>
+    <div className="flex justify-center">
+    <label htmlFor="debt"
+    className="p-1 pt-3"
+    >Value</label>
     <input 
     id="debt"
     type="float" 
@@ -66,10 +92,15 @@ const router = useRouter()
     value={formData.debt} 
     placeholder="current debt total" 
     onChange={handleChange} 
-    autoComplete="new-debt"/>
+    autoComplete="new-debt"
+    className="p-1 m-2 border w-64"
+    />
+  </div>
 
-
-<label htmlFor="interest">interest percent </label>
+  <div className="flex justify-center">
+<label htmlFor="interest"
+className=" pt-3"
+>Inerest </label>
     <input 
     id="interest"
     type="float" 
@@ -77,12 +108,18 @@ const router = useRouter()
     value={formData.interest} 
     placeholder="interest rate" 
     onChange={handleChange} 
-    autoComplete="new-rate"/>
+    autoComplete="new-rate"
+    className="p-1 m-2 border w-64"
+    />
     </div>
+    
+    <Toaster/>
 
-    <button className="box-border p-1 m-2 border-4 rounded-lg">add debt</button>
+    <div className="flex justify-center">
+    <button className="box-border p-2 m-2 shadow-lg bg-yellow-200 rounded-md">Add Debt</button>
+    </div>
     </form>
-    <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-2 border-4 rounded-lg">Home</button>
+    </div>
     </div>
     </>
     )

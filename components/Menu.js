@@ -11,9 +11,9 @@ export default function Menu(){
     //open
     return(
       <>
-      <div className="absolute border-box h-64 w-64 top-0 right-0"> 
-      <div className="border-content">
-          <nav className="absolute top-0 right-0 h-32 w-16 m-4">
+      <div className="relative border-box h-auto w-auto top-0 right-0"> 
+      
+          <nav className="relative top-0 left-0 h-32 w-16 m-4"> 
           <div
           onClick={handleChange}
           className="box-content justify-center m-2 p-1 cursor-pointer">
@@ -21,17 +21,17 @@ export default function Menu(){
           <div className="w-8 h-1 bg-red-400 m-1.5"></div>
           <div className="w-8 h-1 bg-red-400 m-1.5"></div>
           </div>
+          <Logout></Logout>
            </nav>
       </div>
-      <Logout></Logout>
-      </div>
+    
       </>
     )
   }
   //close
   return(
-   
-        <nav className="absolute top-0 right-0 h-32 w-16 m-4">
+    <div className="relative border-box h-auto w-auto top-0 right-0"> 
+        <nav className="relative top-0 left-0 h-32 w-16 m-4">
           <div
           onClick={handleChange}
           className=" box-content justify-center m-2 p-1 cursor-pointer">
@@ -40,6 +40,6 @@ export default function Menu(){
           <div className="w-8 h-1 bg-emerald-400 m-1.5"></div>
           </div>
            </nav>
-         
+         </div>
   )
 }

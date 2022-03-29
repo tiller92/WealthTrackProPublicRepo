@@ -15,10 +15,10 @@ export default function NetWorth({stockTotalsValue,cryptoTotalValue, realestateT
 
   return ( 
   <>
-  <div className='col-span-1  h-auto flex justify-center m-5'>
-  <button onClick={handleReload} className='rounded-full p-3 m-2'><AiOutlineReload size={28} /></button>
-    <p className='border border-box p-4 bg-emerald-200 rounded-lg'>Net Worth: ${roundWorth}</p>
-  </div>
+  <div className="border border-box p-4 bg-emerald-200 shadow-lg shadow-slate-400 rounded-lg flex justify-center  m-5 ">
+    <p className=''>Net Worth: ${roundWorth}</p> 
+     <button onClick={handleReload} className='ml-4'>< AiOutlineReload size={20} /></button>
+    </div>
   </>
   )
 

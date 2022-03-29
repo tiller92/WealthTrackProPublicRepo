@@ -40,7 +40,7 @@ useEffect(()=>{
 
   return (
     <>
-     <div className="asset box-content shadow-lg shadow-emerald-400 p-2 border-2 m-3 rounded-md">
+     <div className="asset box-content shadow-lg shadow-slate-400 p-2 border-2 m-3 rounded-md">
      <ul className="ml-4 flex justify-center">
       <li>Total Value: ${portfolio}</li>
     </ul>

@@ -48,18 +48,18 @@ export default function Debt({setDebtTotalValue, debtList}){
   
   return ( 
     <>
-    <div className='col-span-1 box-content shadow-lg shadow-emerald-400 border-2 m-3 rounded-md' >
+    <div className='col-span-1 box-content shadow-lg shadow-slate-400 border-2 m-3 rounded-md' >
       <div className="asset p-4">
       <ul className="ml-4 flex justify-center">
-        <li>Total Debt: ${portfolio}</li>
+        <li key={1}>Total Debt: ${portfolio}</li>
       </ul>
       <h1>Debt:</h1>
       <ul >
         {debt.map(val => (
           <>
-          <li className="asset" key={val.id}>{val.type }
-          <DeleteDebt  id={val.id} ></DeleteDebt>
-          <EditDebtInLine id={val.id} ></EditDebtInLine>
+          <li className="asset" key={val.id +8}>{val.type }
+          <DeleteDebt key={val.id+10} id={val.id} ></DeleteDebt>
+          <EditDebtInLine key={val.id+11} id={val.id} ></EditDebtInLine>
            </li>
           <li key={val.id +1} className="asset ml-1" >${val.debt}</li>
           <li key={val.id +2} className="asset ml-1" > {val.interest}% </li>

@@ -19,21 +19,27 @@ function handleLogout(e){
 
 function handleSignIn(){
   console.log('sign in')
- router.push('/login')
+ router.push('/signup')
 }
 
 if(user == ''){
   return (
-    <button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400" onClick={handleSignIn}>Sign In</button>
+    <>
+     <div className="relative flex flex-row">
+    <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleSignIn}>Sign Up!</button>
+    <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >About</button>
+    <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >Contact</button>
+    </div>
+    </>
   )
 }else{
   return (
     <>
-  <div className="relative top-20 float justify-center flex flex-col">
-  <button className="shadow-lg rounded-lg bg-emerald-400 m-1">Hello: {user}</button>
-  <button className="shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleLogout}>Logout</button>
-  <button className="shadow-lg rounded-lg bg-emerald-400 m-1" >Contact</button>
-  <button className="shadow-lg rounded-lg bg-emerald-400 m-1" >About</button>
+  <div className="relative flex flex-row">
+  <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1">Hello: {user}</button>
+  <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleLogout}>Logout</button>
+  <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >Settings</button>
+  <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >About</button>
   </div>
   </>
   )

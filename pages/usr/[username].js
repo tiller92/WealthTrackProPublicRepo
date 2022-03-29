@@ -9,7 +9,7 @@ import RealestateAssest from "../../components/RealestateAssest"
 import Debt from "../../components/Debt"
 import axios from "axios"
 import prisma from "../../lib/prismaExport"
-import {AiFillPlusCircle} from 'react-icons/ai'
+import {AiFillPlusCircle,AiOutlineReload} from 'react-icons/ai'
  
 //TODO: This will load the data you needfot the intail load that is rendering then the data will be refreshed by the use when they add things. it doesnt work
 export async function getServerSideProps({query}){
@@ -72,7 +72,7 @@ const initCryptoFromServer = JSON.parse(cryptoList)
 const initRealestateFromServer = JSON.parse(realestateList)
 const initDebtFromServer = JSON.parse(debtList)
 
-
+const handleReload = ()=>{ window.location.reload() }
 const handleStockSubmit = (e) =>{
   e.preventDefault()
 if(user){
@@ -111,23 +111,33 @@ useEffect(()=>{
     </nav>
     <main className="flex justify-center">
     <div className="profile-home  h-auto  w-11/12 ">
-    <NetWorth debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue=
+    <NetWorth  debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue=
     {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
 
-    <div className="grid border border-box border-1 flex justify-center float-left">
+    <div className="flex justify-center float-left flex-col w-4/12">
     <UserAsset stocksList={initStocksFromServer} value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg flex justify-center  rounded-lg bg-emerald-400" onClick={handleStockSubmit}><AiFillPlusCircle size={25} /> Stock/ETF</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 shadow-lg rounded-lg bg-emerald-400 flex justify-center" onClick={handleStockSubmit}><AiFillPlusCircle size={25} /> Stock/ETF</button></div>
     </div>
 
-    <div className="border border-box grid grid-cols-2 h-auto w-auto">
-    <CryptoAsset cryptoList={initCryptoFromServer} setCryptoTotalValue={setCryptoTotalValue}></CryptoAsset>
-    <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}></RealestateAssest>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-1 shadow-lg rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} /> Crypto</button></div>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 border-2 shadow-lg rounded-lg bg-emerald-400 flex justify-center  " onClick={handleRealestateSubmit}><AiFillPlusCircle size={25} /> Realestate</button></div>
-    <Debt debtList={initDebtFromServer} setDebtTotalValue={setDebtTotalValue}></Debt>
-    <div></div>
-    <div className="flex justify-center col-span-1" ><button className="box-border p-1 m-2 border-1 shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleDebtSubmit}><AiFillPlusCircle size={25} /> Debt</button></div>
-
+    <div className=" grid grid-cols-2 h-auto w-auto">
+    <CryptoAsset cryptoList={initCryptoFromServer} setCryptoTotalValue={setCryptoTotalValue}>
+    </CryptoAsset>
+    <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}>
+    </RealestateAssest>
+    <div className="flex justify-center" >
+    <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} />Crypto</button>
+    </div>
+    <div className="flex justify-center" >
+      <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center  " onClick={handleRealestateSubmit}>
+        <AiFillPlusCircle size={25} /> Realestate</button>
+        </div>
+    <Debt debtList={initDebtFromServer} setDebtTotalValue={setDebtTotalValue}>
+    </Debt>
+    <div>
+    </div>
+    <div className="flex justify-center col-span-1" >
+      <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleDebtSubmit}><AiFillPlusCircle size={25} /> Debt</button>
+   </div>
     </div>
     </div>
     </main>

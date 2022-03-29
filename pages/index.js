@@ -7,6 +7,9 @@ import GetStarted from '../components/GetStarted'
 import { UsersContext } from '../components/UsersContext'
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import handPic from '../public/fallingmoney.jpeg'
+
+
 
 
 
@@ -24,7 +27,6 @@ export default function Home() {
     return(
       <>
       <nav>
-      <Menu></Menu>
       </nav>
       <main>
       <GetStarted></GetStarted>

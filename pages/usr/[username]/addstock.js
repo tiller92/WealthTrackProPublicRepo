@@ -1,12 +1,15 @@
 import { useContext, useState } from "react"
 import axios from "axios"
 import { UsersContext } from "../../../components/UsersContext"
-import { Router } from "react-router"
 import { useRouter } from "next/router"
+import Menu from '../../../components/Menu'
+import toast, { Toaster } from 'react-hot-toast'
+import { BsCheckSquareFill } from "react-icons/bs";
 
 
 export default function AddStockForm(){
   const user = useContext(UsersContext)
+  const router = useRouter()
  
  const initailState = {
     ticker:'',
@@ -31,22 +34,41 @@ export default function AddStockForm(){
          ...formData,
          username:user
         })
+    if(res.status == 201){
+      const stockAddedNotify = ()=> toast.success(`stock was succesfully added!`)
+      stockAddedNotify()
     console.log(res, 'res from addstock ')
+    }else{
+      const errorToast = ()=>toast.error('sorry something went wrong')
+      errorToast()
+    }
     setFormData(initailState)
     
   }
   findUserInfo()
 } 
-const router = useRouter()
+
 
 
   return(
     <>
-    <div className="relative top-64 box-border b-4 h-64 flex justify-center">
-    
-    <form className="signUpForm" onSubmit={handleSubmit}>
-    <div className="grid grid-cols-2">
-    <label htmlFor="ticker">ticker</label>
+    <nav className="flex justify-between">
+      <Menu></Menu>
+      <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
+      >Home</button>
+    </nav>
+
+    <div className="flex justify-center">
+
+    <div className="border bg-emerald-400 shadow-slate-900 shadow-lg m-5 p-2 w-6/12 rounded-lg flex justify-center ">
+
+    <form  onSubmit={handleSubmit}>
+
+   <div className="flex justify-center">
+    <label 
+    className="p-1 pt-3"
+    htmlFor="ticker">Ticker
+    </label>
     <input 
     id="ticker"
     type="text" 
@@ -54,10 +76,15 @@ const router = useRouter()
     value={formData.ticker}
     placeholder="ticker symbol (example VOO)"
     onChange={handleChange}
-    autoComplete="new-ticker"/>
+    autoComplete="new-ticker"
+    className="p-1 m-2 border w-64"
+    />
+  </div>
 
-
-    <label htmlFor="shares">shares</label>
+  <div className="flex justify-center">
+    <label htmlFor="shares"
+    className="pt-3"
+    >Shares</label>
     <input 
     id="shares"
     type="integer" 
@@ -65,12 +92,17 @@ const router = useRouter()
     value={formData.shares} 
     placeholder="how many shares?" 
     onChange={handleChange} 
-    autoComplete="new-shares"/>
+    autoComplete="new-shares"
+    className="p-1 m-2 border w-64"/>
     </div>
 
-    <button className="box-border p-1 m-2 border-4 rounded-lg">add asset</button>
+    <Toaster/>
+    
+    <div className="flex justify-center">
+    <button className="box-border p-2 m-2 shadow-lg bg-yellow-200 rounded-md">Submit Asset</button>
+    </div>
     </form>
-    <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-2 border-4 rounded-lg">Home</button>
+    </div>
     </div>
     </>
     )

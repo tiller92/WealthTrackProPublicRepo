@@ -1,8 +1,9 @@
 import { useContext, useState } from "react"
 import axios from "axios"
 import { UsersContext } from "../../../components/UsersContext"
-import { Router } from "react-router"
 import { useRouter } from "next/router"
+import Menu from "../../../components/Menu"
+import toast, { Toaster } from 'react-hot-toast'
 
 
 export default function AddStockForm(){
@@ -31,6 +32,14 @@ export default function AddStockForm(){
          ...formData,
          username:user
         })
+        if(res.status == 201){
+          const realestateAddedNotify = ()=> toast.success(`Realestate was succesfully added!`)
+          realestateAddedNotify()
+        console.log(res, 'res from addstock ')
+        }else{
+          const errorToast = ()=>toast.error('sorry something went wrong')
+          errorToast()
+        }
     setFormData(initailState)
     
   }
@@ -41,11 +50,22 @@ const router = useRouter()
 
   return(
     <>
-    <div className="relative top-64 box-border b-4 h-64 flex justify-center">
-    
-    <form className="signUpForm" onSubmit={handleSubmit}>
-    <div className="grid grid-cols-2">
-    <label htmlFor="name">Name</label>
+    <nav className="flex justify-between">
+    <Menu></Menu>
+    <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
+      >Home</button>
+    </nav>
+
+    <div className="flex justify-center">
+
+    <div className="border bg-emerald-400 shadow-slate-900 shadow-lg m-5 p-2 w-6/12 rounded-lg flex justify-center">
+
+    <form className="" onSubmit={handleSubmit}>
+
+    <div className="flex justify-center">
+    <label htmlFor="name"
+    className="p-1 pt-3"
+    >Name</label>
     <input 
     id="name"
     type="text" 
@@ -53,10 +73,16 @@ const router = useRouter()
     value={formData.name}
     placeholder="Name of realestate"
     onChange={handleChange}
-    autoComplete="new-name"/>
+    autoComplete="new-name"
+    className="p-1 m-2 border w-64"
+    />
+  </div>
 
-
-    <label htmlFor="value">value</label>
+    <div className="flex justify-center">
+    <label htmlFor="value"
+    className="p-1 pt-3"
+    >
+      Value</label>
     <input 
     id="value"
     type="integer" 
@@ -64,12 +90,16 @@ const router = useRouter()
     value={formData.value} 
     placeholder="estimated house value" 
     onChange={handleChange} 
-    autoComplete="new-value"/>
+    autoComplete="new-value"
+    className="p-1 m-2 border w-64"
+    />
     </div>
-
+    <Toaster/>
+    <div className="flex justify-center">
     <button className="box-border p-1 m-2 border-4 rounded-lg">add asset</button>
+    </div>
     </form>
-    <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-2 border-4 rounded-lg">Home</button>
+    </div>
     </div>
     </>
     )

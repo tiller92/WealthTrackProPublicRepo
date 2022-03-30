@@ -26,7 +26,7 @@ export default function Home() {
   }else{
     return(
       <>  
-    <div className='bg-main-bg h-screen'>
+    <div className='bg-gradient-to-r from-main-bg to-secondary  h-screen'>
       <nav>
       </nav>
       <main className='h-2/6'>

@@ -72,6 +72,7 @@ const initCryptoFromServer = JSON.parse(cryptoList)
 const initRealestateFromServer = JSON.parse(realestateList)
 const initDebtFromServer = JSON.parse(debtList)
 
+
 const handleReload = ()=>{ window.location.reload() }
 const handleStockSubmit = (e) =>{
   e.preventDefault()
@@ -105,7 +106,7 @@ useEffect(()=>{
 
   return (
     <>
-    <div className="bg-main-bg h-screen">
+    <div className="bg-gradient-to-r from-main-bg to-secondary  h-screen">
     <nav>
     <Menu></Menu>
     </nav>

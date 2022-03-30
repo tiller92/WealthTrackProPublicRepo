@@ -34,7 +34,7 @@ export default function AddStockForm(){
         })
         if(res.status == 201){
           const realestateAddedNotify = ()=> toast.success(`Realestate was succesfully added!`)
-          realestateAddedNotify()
+          realestateAddedNotify
         console.log(res, 'res from addstock ')
         }else{
           const errorToast = ()=>toast.error('sorry something went wrong')
@@ -50,6 +50,7 @@ const router = useRouter()
 
   return(
     <>
+    <div className="bg-gradient-to-r from-main-bg to-secondary h-screen">
     <nav className="flex justify-between">
     <Menu></Menu>
     <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
@@ -99,6 +100,7 @@ const router = useRouter()
     <button className="box-border p-1 m-2 border-4 rounded-lg">add asset</button>
     </div>
     </form>
+    </div>
     </div>
     </div>
     </>

@@ -18,7 +18,7 @@ export default function({toggle}){
     return(
       <>
       <div className="animate-bounce">
-      <FaQuestion/>
+      <FaQuestion color={'#21E6C1'}/>
       </div>
     </>
     )

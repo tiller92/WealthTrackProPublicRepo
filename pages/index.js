@@ -25,12 +25,14 @@ export default function Home() {
   //load the no user page
   }else{
     return(
-      <>
+      <>  
+    <div className='bg-main-bg h-screen'>
       <nav>
       </nav>
-      <main>
+      <main className='h-2/6'>
       <GetStarted></GetStarted>
       </main>
+      </div>
       </>
     )
   }

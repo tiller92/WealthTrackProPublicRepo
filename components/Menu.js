@@ -13,10 +13,10 @@ export default function Menu(){
       <>
       <div className="relative border-box h-auto w-auto top-0 right-0"> 
       
-          <nav className="relative top-0 left-0 h-32 w-16 m-4"> 
+          <nav className="relative top-5 left-5 h-32 w-16 "> 
           <div
           onClick={handleChange}
-          className="box-content justify-center m-2 p-1 cursor-pointer">
+          className="box-content justify-center  p-1 cursor-pointer">
           <div className="w-8 h-1 bg-red-400 m-1.5"></div>
           <div className="w-8 h-1 bg-red-400 m-1.5"></div>
           <div className="w-8 h-1 bg-red-400 m-1.5"></div>
@@ -30,16 +30,16 @@ export default function Menu(){
   }
   //close
   return(
-    <div className="relative border-box h-auto w-auto top-0 right-0"> 
-        <nav className="relative top-0 left-0 h-32 w-16 m-4">
+    
+        <nav className="relative top-5 left-5 h-32 w-16 ">
           <div
           onClick={handleChange}
-          className=" box-content justify-center m-2 p-1 cursor-pointer">
+          className=" box-content justify-center  p-1 cursor-pointer">
           <div className="w-8 h-1 bg-emerald-400 m-1.5"></div>
           <div className="w-8 h-1 bg-emerald-400 m-1.5"></div>
           <div className="w-8 h-1 bg-emerald-400 m-1.5"></div>
           </div>
            </nav>
-         </div>
+      
   )
 }

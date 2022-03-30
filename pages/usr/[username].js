@@ -98,7 +98,6 @@ const handleDebtSubmit = (e) =>{
 
 // checks for user
 useEffect(()=>{
-  !user ? console.log('no user') : console.log(user)
   if(localStorage.username == '' || localStorage.username == undefined){
    return router.push(`/`)
   }
@@ -106,11 +105,12 @@ useEffect(()=>{
 
   return (
     <>
+    <div className="bg-main-bg h-screen">
     <nav>
     <Menu></Menu>
     </nav>
-    <main className="flex justify-center">
-    <div className="profile-home  h-auto  w-11/12 ">
+    <main className="flex justify-center h-screen ">
+    <div className=" h-auto  w-11/12">
     <NetWorth  debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue=
     {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
 
@@ -141,6 +141,7 @@ useEffect(()=>{
     </div>
     </div>
     </main>
+    </div>
     </>
   )
 

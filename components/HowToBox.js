@@ -6,7 +6,7 @@ export default function({toggle}){
     return (
       <>
      <div>
-       <p>
+       <p className="text-fourth-green">
          Welcome to Wealth Track Pro!
 
          Click get started to cont as a guest. Anything you enter in as guest will not be saved if you close your browser. Make an account to save all your info.

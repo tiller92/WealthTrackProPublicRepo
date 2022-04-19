@@ -22,10 +22,15 @@ function handleSignIn(){
  router.push('/signup')
 }
 
+
+function handleSettings(){
+  router.push(`/usr/${user}/settings`)
+}
+
 if(user == ''){
   return (
     <>
-     <div className="relative flex flex-row">
+     <div className="absolute flex flex-row">
     <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleSignIn}>Sign Up!</button>
     <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >About</button>
     <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >Contact</button>
@@ -35,10 +40,10 @@ if(user == ''){
 }else{
   return (
     <>
-  <div className="relative flex flex-row">
+  <div className="absolute flex flex-row">
   <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1">Hello: {user}</button>
   <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleLogout}>Logout</button>
-  <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >Settings</button>
+  <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" onClick={handleSettings} >Settings</button>
   <button className="p-2 shadow-lg rounded-lg bg-emerald-400 m-1" >About</button>
   </div>
   </>

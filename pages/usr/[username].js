@@ -10,6 +10,8 @@ import Debt from "../../components/Debt"
 import axios from "axios"
 import prisma from "../../lib/prismaExport"
 import {AiFillPlusCircle,AiOutlineReload} from 'react-icons/ai'
+import HowToBox from "../../components/HowToBox"
+import Cash from '../../components/Cash'
  
 //TODO: This will load the data you needfot the intail load that is rendering then the data will be refreshed by the use when they add things. it doesnt work
 export async function getServerSideProps({query}){
@@ -27,12 +29,14 @@ export async function getServerSideProps({query}){
           crypto: true,
           realestate: true,
           debt: true,
+          cash:true,
       }
   })
- 
   return user
 }
  const user = main()
+
+ 
  const stocksList = setListStocks(await user)
  function setListStocks(data){
    const sList = [...data.stocks]
@@ -54,24 +58,37 @@ export async function getServerSideProps({query}){
    const sList = [...data.debt]
    return JSON.stringify(sList)
  }
+ const cashList = setListCash(await user)
+ function setListCash(data){
+   const sList = [...data.cash]
+   console.log(sList)
+   return JSON.stringify(sList)
+ }
   return {
-    props: {stocksList, cryptoList, realestateList, debtList},
+    props: {stocksList, cryptoList, realestateList, debtList, cashList},
   }
 }
 
 
-export default function UserHome({stocksList, cryptoList,realestateList, debtList}){
+export default function UserHome({stocksList, cryptoList,realestateList, debtList, cashList}){
 const router = useRouter()
 const [stockTotalsValue, setStockTotalValue] = useState(0)
 const [cryptoTotalValue, setCryptoTotalValue] = useState(0)
 const [realestateTotalsValue, setRealestateTotalValue] = useState(0)
 const [debtTotalsValue, setDebtTotalValue] = useState(0)
+const [cashTotalsValue, setCashTotalValue] = useState(0)
 const user = useContext(UsersContext)
 const initStocksFromServer = JSON.parse(stocksList)
 const initCryptoFromServer = JSON.parse(cryptoList)
 const initRealestateFromServer = JSON.parse(realestateList)
 const initDebtFromServer = JSON.parse(debtList)
+const initCashFromServer = JSON.parse(cashList)
 
+
+const [toggle, setToggle] = useState(false)
+const handleToggle = ()=>{
+  setToggle(!toggle)
+}
 
 const handleReload = ()=>{ window.location.reload() }
 const handleStockSubmit = (e) =>{
@@ -94,6 +111,10 @@ const handleDebtSubmit = (e) =>{
   e.preventDefault()
   router.push(`/usr/${user}/addDebt`)
 }
+const handleCashSubmit = (e) =>{
+  e.preventDefault()
+  router.push(`/usr/${user}/addCash`)
+}
 
 //get the net worth state from 
 
@@ -106,14 +127,14 @@ useEffect(()=>{
 
   return (
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary  h-screen">
+    <div className="bg-gradient-to-r from-main-bg to-secondary w-screen  h-screen">
     <nav>
     <Menu></Menu>
     </nav>
-    <main className="flex justify-center h-screen ">
-    <div className=" h-auto  w-11/12">
+    <main className="flex justify-center h-5/6 m-5 ">
+    <div className=" h-full  w-11/12">
     <NetWorth  debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue=
-    {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue}></NetWorth>
+    {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue} cashTotalsValue={cashTotalsValue}></NetWorth>
 
     <div className="flex justify-center float-left flex-col w-4/12">
     <UserAsset stocksList={initStocksFromServer} value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
@@ -132,14 +153,25 @@ useEffect(()=>{
       <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center  " onClick={handleRealestateSubmit}>
         <AiFillPlusCircle size={25} /> Realestate</button>
         </div>
+    <div>
     <Debt debtList={initDebtFromServer} setDebtTotalValue={setDebtTotalValue}>
     </Debt>
-    <div>
     </div>
+    <div>
+    <Cash setCashTotalValue={setCashTotalValue} cashList={initCashFromServer} ></Cash>
+   </div>
     <div className="flex justify-center col-span-1" >
       <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleDebtSubmit}><AiFillPlusCircle size={25} /> Debt</button>
    </div>
+  
+   <div className="flex justify-center col-span-1" >
+      <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleCashSubmit}><AiFillPlusCircle size={25} /> Cash</button>
+   </div>
     </div>
+    <div className="relative flex justify-center m-5 top-10">
+            <button onClick={handleToggle} ><HowToBox
+            toggle={toggle}></HowToBox></button>
+          </div>
     </div>
     </main>
     </div>

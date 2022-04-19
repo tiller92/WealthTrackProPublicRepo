@@ -20,6 +20,7 @@ export default function handler(req, res) {
                 crypto: true,
                 realestate: true,
                 debt: true,
+                cash: true
             }
         })
 

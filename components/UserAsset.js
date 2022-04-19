@@ -24,11 +24,9 @@ import { useRouter } from 'next/router'
               stockValue:0,
             }
             total.push(obj)
-          
     }
     for(let i of total){
         i.stockValue = round(i.price * i.shares, 2)
-        
     }
     return total
     }

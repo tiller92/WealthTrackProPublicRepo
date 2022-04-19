@@ -36,7 +36,7 @@ export default function handler(req, res) {
         .finally(async() => {
             await prisma.$disconnect()
         })
-    res.status(200).json({ data: 'new user created' })
+    return res.status(200).json({ data: 'new user created' })
 
 }
 

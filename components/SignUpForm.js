@@ -36,24 +36,15 @@ export default function SignUpForm(){
     })
     //TODO: add this tie lcoal storage and then push to the user home page
     if(res.status === 200){
-    console.log(res)
-      const userInfo = res.data.newUser 
-      
-      // localStorage.setItem('user',{...userInfo.user})
-      router.push(`/login`)
-    
-      // set login state
+      const userInfo = res.data.newUser  
+      return router.push(`/login`)
       }else{
         //TODO: make and errorr component that takes an error and displays it
-        console.log('error occurred')
-        
+        console.log('error occurred') 
       }
-
     }
-    
     addUser()
-    setFormData(initailState)
-    
+    setFormData(initailState) 
   }
   return(
     <>
@@ -68,9 +59,6 @@ export default function SignUpForm(){
     <div className="border bg-emerald-400 shadow-slate-900 shadow-lg m-5 p-2 w-6/12 rounded-lg flex justify-center ">
 
     <form className="" onSubmit={handleSubmit}>
-    
-
-
     <div className="flex justify-center">
 
     <label htmlFor="username"

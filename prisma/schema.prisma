@@ -21,6 +21,7 @@ model User {
   crypto Usercrypto[]
   realestate Userrealestate[]
   debt Userdebt[]
+  cash Usercash[]
 }
 
 model Userstocks {
@@ -53,6 +54,13 @@ model Userdebt {
   interest Decimal
   debt Decimal
   owner User @relation(fields: [ownerName],references: [username])
+  ownerName String
+}
+
+model Usercash {
+  id  Int @id @default(autoincrement())
+  amount Decimal
+  owner User @relation(fields: [ownerName], references: [username])
   ownerName String
 }
 

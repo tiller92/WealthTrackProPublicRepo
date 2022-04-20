@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo, useState } from "react"
 import { UsersContext } from "../components/UsersContext"
 import getRandomInt from "../lib/randomNum"
 
-export default function guestLoader(){
+export default function GuestLoader(){
   const router = useRouter()
   const [guest,setGuest] = useState(`guest${getRandomInt(10000)}`)
   const [user,setUser] = useState(useContext(UsersContext))
@@ -30,7 +30,7 @@ export default function guestLoader(){
               setUser(guest)
               
               localStorage.setItem('username',`${guest}`)
-              router.push(`/usr/${guest}`)
+             return router.push(`/usr/${guest}`)
         }
       }
       addUser()

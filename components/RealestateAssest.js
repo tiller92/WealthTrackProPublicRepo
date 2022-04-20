@@ -5,7 +5,7 @@ import {round} from '../lib/round'
 import DeleteRealestate from '../components/DeleteRealestate'
 import EditRealestateInLine from '../components/EditRealestateInLine'
 
-export default function realestate({setRealestateTotalValue,realestateList}){
+export default function Realestate({setRealestateTotalValue,realestateList}){
   const user = useContext(UsersContext)
   const [realestate,setRealestate] = useState([])
   const [portfolio, setPortfolio] = useState(0)

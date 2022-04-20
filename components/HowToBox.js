@@ -1,6 +1,6 @@
 import { FaQuestion } from "react-icons/fa"
 
-export default function({toggle}){ 
+export default function HowToo({toggle}){ 
 
   if(toggle == true){
     return (

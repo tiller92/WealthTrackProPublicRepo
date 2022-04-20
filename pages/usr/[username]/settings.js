@@ -4,7 +4,7 @@ import axios from "axios"
 import { useRouter } from "next/router"
 
 
-export default function settingsPage(){
+export default function SettingsPage(){
   const router = useRouter()
   function deleteUser(){
     if(localStorage.username != ''){

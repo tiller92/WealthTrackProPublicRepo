@@ -11,7 +11,6 @@ const shh = SECRET_KEY.module
 
 
 export default function handler(req, res) {
-    console.log(req.method)
     const { first_name, last_name, username, email, password } = req.body
     async function main() {
         const hashPWD = await bcrypt.hash(password, 12)
@@ -39,13 +38,3 @@ export default function handler(req, res) {
     return res.status(200).json({ data: 'new user created' })
 
 }
-
-
-// {
-//     decode: [Function (anonymous)],
-//     verify: [Function (anonymous)],
-//     sign: [Function (anonymous)],
-//     JsonWebTokenError: [Function: JsonWebTokenError],
-//     NotBeforeError: [Function: NotBeforeError],
-//     TokenExpiredError: [Function: TokenExpiredError]
-//   }

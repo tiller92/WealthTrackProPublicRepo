@@ -36,6 +36,9 @@
     "directories": {
         "lib": "lib"
     },
+    "optionalDependencies": {
+        "fsevents": "*"
+    },
     "author": "",
     "license": "ISC"
 }

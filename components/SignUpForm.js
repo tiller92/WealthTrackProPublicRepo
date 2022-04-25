@@ -34,6 +34,7 @@ export default function SignUpForm(){
       const res = await axios.post('/api/adduser', {
       ...formData    
     })
+    console.log(res)
     //TODO: add this tie lcoal storage and then push to the user home page
     if(res.status === 200){
       const userInfo = res.data.newUser  
@@ -41,6 +42,8 @@ export default function SignUpForm(){
       }else{
         //TODO: make and errorr component that takes an error and displays it
         console.log('error occurred') 
+        console.log(res.status)
+        return router.push('/signup')
       }
     }
     addUser()

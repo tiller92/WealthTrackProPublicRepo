@@ -1,7 +1,6 @@
 import axios from "axios"
 import bcrypt from 'bcryptjs'
 import { useState, useEffect,useLayoutEffect, createContext, useContext } from "react"
-import Link from "next/link"
 import { UsersContext } from "./UsersContext"
 import { useRouter } from "next/router"
 import Menu from "./Menu"

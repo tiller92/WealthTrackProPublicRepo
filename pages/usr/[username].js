@@ -42,6 +42,7 @@ export async function getServerSideProps({query}){
    const sList = [...data.stocks]
    return JSON.stringify(sList)
  }
+ 
 //TODO: you need make a server loaded list for each prop needed and drill them down. Use user asset as the example
  const cryptoList = setListCrypto(await user)
  function setListCrypto(data){

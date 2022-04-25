@@ -1,6 +1,4 @@
 // this check the db for user and return user json
-import axios from 'axios'
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import SECRET_KEY from '/Users/ryantiller/Documents/wealth-trac-proto/wealth-trac-proto/config'
 import prisma from '../../lib/prismaExport'
@@ -52,7 +50,3 @@ export default async function handler(req, res) {
         res.status(403).json('err')
     }
 }
-
-// jwt.sign({
-//     data: 'foobar'
-//   }, 'secret', { expiresIn: '1h' });

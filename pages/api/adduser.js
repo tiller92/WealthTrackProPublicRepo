@@ -1,13 +1,5 @@
-import { parseBody } from "next/dist/server/api-utils"
 import prisma from "../../lib/prismaExport"
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import SECRET_KEY from '/Users/ryantiller/Documents/wealth-trac-proto/wealth-trac-proto/config'
-import { setHttpAgentOptions } from "next/dist/server/config"
-
-
-const shh = SECRET_KEY.module
-
 
 
 export default function handler(req, res) {

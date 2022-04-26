@@ -7,7 +7,8 @@ import getRandomInt from "../lib/randomNum"
 export default function GuestLoader(){
   const router = useRouter()
   const [guest,setGuest] = useState(`guest${getRandomInt(10000)}`)
-  const [user,setUser] = useState(useContext(UsersContext))
+  const [user,setUser] = useState(null)
+  //useContext(UsersContext)
   
   useEffect(()=>{
     user ? router.push(`/usr/${user}`): console.log('create guest')
@@ -33,7 +34,7 @@ export default function GuestLoader(){
         }
       }
       addUser()
-    },[guest,user])
+    },[guest])
 
   return(
     <>

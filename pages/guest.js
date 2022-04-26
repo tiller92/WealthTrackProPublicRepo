@@ -29,12 +29,12 @@ export default function GuestLoader(){
         console.log(res)
         if(res.status === 200){
               setUser(guest)
-            localStorage.setItem('username',`${guest}`)
+              localStorage.setItem('username',`${guest}`)
              return router.push(`/usr/${guest}`)
         }
       }
       addUser()
-    },[guest])
+    })
 
   return(
     <>

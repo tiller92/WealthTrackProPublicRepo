@@ -7,7 +7,7 @@ import GetStarted from '../components/GetStarted'
 import { UsersContext } from '../components/UsersContext'
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import handPic from '../public/fallingmoney.jpeg'
+
 
 
 

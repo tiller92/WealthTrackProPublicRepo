@@ -25,12 +25,8 @@ export default function handler(req, res) {
         }
     }
 
-    try {
-        const newUser = main()
-        return res.status(200).json({ data: 'new user created' })
-    } catch (err) {
-        console.log(err)
-        return res.status(403).json('try a new username')
-    }
+
+    const newUser = main()
+    return res.status(200).json({ data: 'new user created' })
 
 }

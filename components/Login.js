@@ -8,7 +8,7 @@ import Menu from "./Menu"
 
 
 
-export default function SignUpForm(){
+export default function LoginForm(){
   const initailStateLogged = {user:{
     id:0,
     username:'',

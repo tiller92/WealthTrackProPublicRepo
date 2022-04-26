@@ -22,7 +22,8 @@ export default function handler(req, res) {
     }
 
 
-    const newUser = main()
-    return res.status(200).json({ data: 'new user created' })
+    main()
+
+    return res.status(200).json({ data: 'main' })
 
 }

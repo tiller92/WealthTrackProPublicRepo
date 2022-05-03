@@ -14,6 +14,8 @@ export default function SettingsPage(){
       },})
       localStorage.clear()
       return router.push('/')
+    }else{
+      return router.push('/')
     }
   }
 

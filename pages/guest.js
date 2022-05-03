@@ -23,6 +23,7 @@ export default function GuestLoader(){
         password:'guest',
       } 
      async function addUser(){
+       try{
           const res = await axios.post('/api/adduser', {
           ...initailState   
         })
@@ -32,8 +33,12 @@ export default function GuestLoader(){
               localStorage.setItem('username',`${guest}`)
              return router.push(`/usr/${guest}`)
         }
+      }catch(err){
+        console.log(err)
       }
+  }
       addUser()
+     
     })
 
   return(

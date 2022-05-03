@@ -16,6 +16,7 @@ async function getPrice(arr){
   const total = []
   for(let stock in arr){
     let res = await axios.get( `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${arr[stock].name}&market=USD&apikey=${ALPHA_API_KEY}'`)
+    console.log(res)
     let obj = {
             id:arr[stock].id,
             ticker: arr[stock].name,

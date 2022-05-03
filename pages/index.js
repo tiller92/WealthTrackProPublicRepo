@@ -7,6 +7,7 @@ import GetStarted from '../components/GetStarted'
 import { UsersContext } from '../components/UsersContext'
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { getTimeAndDate } from '../lib/timeAndDate'
 
 
 
@@ -14,6 +15,8 @@ export default function Home() {
   const user = useContext(UsersContext) 
   const router = useRouter()
   
+  console.log(getTimeAndDate()  )
+
   if(user){
     // load logged in pages
   

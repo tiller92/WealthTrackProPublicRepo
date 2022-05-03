@@ -39,31 +39,51 @@ export async function getServerSideProps({query}){
  
  const stocksList = setListStocks(await user)
  function setListStocks(data){
+   if(data){
    const sList = [...data.stocks]
    return JSON.stringify(sList)
+   }else{
+     return JSON.stringify([])
+   }
  }
  
 //TODO: you need make a server loaded list for each prop needed and drill them down. Use user asset as the example
  const cryptoList = setListCrypto(await user)
  function setListCrypto(data){
+   if(data){
    const sList = [...data.crypto]
    return JSON.stringify(sList)
+   }else{
+     return JSON.stringify([])
+   }
  }
  const realestateList = setRealestateList(await user)
  function setRealestateList(data){
+   if(data){
    const sList = [...data.realestate]
    return  JSON.stringify(sList)
+   }else{
+     return JSON.stringify([])
+   }
  }
  const debtList = setListDebt(await user)
  function setListDebt(data){
+   if(data){
    const sList = [...data.debt]
    return JSON.stringify(sList)
+   }else{
+     return JSON.stringify([])
+   }
  }
  const cashList = setListCash(await user)
  function setListCash(data){
+   if(data){
    const sList = [...data.cash]
    console.log(sList)
    return JSON.stringify(sList)
+   }else{
+     return JSON.stringify([])
+   }
  }
   return {
     props: {stocksList, cryptoList, realestateList, debtList, cashList},

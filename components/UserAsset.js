@@ -9,6 +9,8 @@ import DeleteAsset from '../components/DeleteAsset'
 import EditInLine from './EditInLine'
 import { useRouter } from 'next/router'
 
+
+
   async function getPrice(arr){
     //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
     
@@ -43,7 +45,7 @@ function Assets({setStockTotalValue,stocksList}){
   const [stocks, setStocks] = useState([])
   const [portfolio, setPortfolio] = useState(0)
   const [firstLoad, setFirstLoad] = useState(true)
-
+ 
 
   useEffect(()=>{
   async function get(){
@@ -61,7 +63,7 @@ function Assets({setStockTotalValue,stocksList}){
   }
 }
 get()
-},[user,setUserTotals])
+},[stocks])
 
 useEffect(()=>{
   let allStocks = 0

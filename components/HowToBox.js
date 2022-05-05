@@ -9,7 +9,7 @@ export default function HowToo({toggle}){
        <p className="text-white">
          Welcome to Wealth Track Pro!
 
-         Click get started to cont as a guest. Anything you enter in as guest will not be saved if you close your browser. Make an account to save all your info.
+         Click get started to continue as a guest. To start tracking your net worth click the add button for the desired assest/liability. After you add one to items hit the refresh button to see the calculated net worth. If you enjoy this service make an account to save all of your data. Once you logout of your guest account all of your data will be deleted. 
        </p>
      </div>
       </>

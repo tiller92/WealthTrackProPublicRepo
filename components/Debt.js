@@ -36,15 +36,15 @@ export default function Debt({setDebtTotalValue, debtList}){
     setPortfolio(debtRound)
   },[debt])
 
-  if(!debt){
-    return (
-      <>
-      <div className='col-span-1 box-content border-4' >
-      <p>add debt</p>
-      </div>
-      </>
-    )
-  }
+  // if(!debt){
+  //   return (
+  //     <>
+  //     <div className='col-span-1 box-content border-4' >
+  //     <p>add debt</p>
+  //     </div>
+  //     </>
+  //   )
+  // }
   
   return ( 
     <>

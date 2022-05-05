@@ -12,9 +12,10 @@ import { useRouter } from 'next/router'
 
 
   async function getPrice(arr){
-    //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
+    //use the alpha vantage API to get the price of the ticker list that is passed to it
     
-    const date = getTimeAndDate()
+    const date = await getTimeAndDate()
+    console.log(date , 'get time and date function')
     const total = []
     for(let stock in arr){
       let res = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${arr[stock].ticker}&apikey=${ALPHA_API_KEY}`)
@@ -63,7 +64,7 @@ function Assets({setStockTotalValue,stocksList}){
   }
 }
 get()
-},[stocks])
+},[user])
 
 useEffect(()=>{
   let allStocks = 0

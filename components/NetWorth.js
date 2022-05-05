@@ -6,16 +6,11 @@ import {AiOutlineReload} from 'react-icons/ai'
 
 export default function NetWorth({stockTotalsValue,cryptoTotalValue, realestateTotalsValue,debtTotalsValue, cashTotalsValue}){
   // get the totals from all the other compenents. Want this to rerender with any change in other components
-  console.log(cashTotalsValue)
-
 
   const netWorth = (stockTotalsValue + cryptoTotalValue + realestateTotalsValue + cashTotalsValue) - (debtTotalsValue)
   
   const roundWorth = round(netWorth,2)
- 
-
   const handleReload = ()=>{ window.location.reload() }
-  
   
 if(roundWorth){
   return ( 

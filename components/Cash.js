@@ -37,7 +37,6 @@ export default function Debt({setCashTotalValue, cashList}){
     }
     let cashRound = round(cashTotal,2)
     setCashTotalValue(cashRound)
-    console.log(cashRound)
     setPortfolio(cashRound)
   },[cash,setCash])
 

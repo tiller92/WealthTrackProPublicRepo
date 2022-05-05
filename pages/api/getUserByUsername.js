@@ -12,7 +12,6 @@ export default function handler(req, res) {
                 username: username,
             },
         })
-        console.log(user)
         return user
     }
 

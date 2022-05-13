@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react"
 import {FiTrendingUp} from "react-icons/fi"
 import { UsersContext } from '../components/UsersContext'
-import { FaQuestion } from "react-icons/fa";
 import HowToBox from "./HowToBox";
-import handPic from '../public/handPhoto.jpeg'
-import Image from "next/image";
+
 
 
 export default function GetStarted({user}){

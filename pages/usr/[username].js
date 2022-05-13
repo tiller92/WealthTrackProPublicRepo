@@ -148,7 +148,7 @@ useEffect(()=>{
 
   return (
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary w-screen  h-screen">
+    <div className="bg-gradient-to-r from-main-bg to-secondary w-full  h-full">
     <nav>
     <Menu></Menu>
     </nav>

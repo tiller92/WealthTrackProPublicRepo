@@ -8,7 +8,6 @@ import toast, { Toaster } from 'react-hot-toast'
 
 export async function getServerSideProps({query}){
   const {username} = query
-  console.log(username)
   return {
     props: {username},
   }
@@ -86,7 +85,7 @@ const router = useRouter()
     placeholder="Type of Debt (i.e 'mortgage')"
     onChange={handleChange}
     autoComplete="new-type"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
     </div>
 
@@ -102,7 +101,7 @@ const router = useRouter()
     placeholder="current debt total" 
     onChange={handleChange} 
     autoComplete="new-debt"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
   </div>
 
@@ -118,7 +117,7 @@ className=" pt-3"
     placeholder="interest rate" 
     onChange={handleChange} 
     autoComplete="new-rate"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
     </div>
     

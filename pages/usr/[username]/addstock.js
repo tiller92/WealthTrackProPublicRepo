@@ -8,7 +8,6 @@ import { BsCheckSquareFill } from "react-icons/bs";
 
 export async function getServerSideProps({query}){
   const {username} = query
-  console.log(username)
   return {
     props: {username},
   }
@@ -86,7 +85,7 @@ const router = useRouter()
     placeholder="ticker symbol (example VOO)"
     onChange={handleChange}
     autoComplete="new-ticker"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
   </div>
 
@@ -102,7 +101,7 @@ const router = useRouter()
     placeholder="how many shares?" 
     onChange={handleChange} 
     autoComplete="new-shares"
-    className="p-1 m-2 border w-64"/>
+    className="p-1 m-2 border md:w-64 w-4/5"/>
     </div>
 
     <Toaster/>

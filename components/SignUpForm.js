@@ -75,7 +75,7 @@ export default function SignUpForm(){
     placeholder="username"
     onChange={handleChange}
     autoComplete="new-username"
-    className="p-1 m-2 ml-4 border w-64"/>
+    className="p-1 m-2 ml-4 border md:w-64 w-4/5"/>
     </div>
 
     <div className="flex justify-center">
@@ -90,7 +90,7 @@ export default function SignUpForm(){
     placeholder=""
     onChange={handleChange}
     autoComplete="new_fistname"
-    className="p-1 m-2 border w-64"/>
+    className="p-1 m-2 border md:w-64 w-4/5"/>
     </div>
 
     <div className="flex justify-center">
@@ -105,7 +105,7 @@ export default function SignUpForm(){
     placeholder=""
     onChange={handleChange}
     autoComplete="new_lastname"
-    className="p-1 m-2 border w-64"/>
+    className="p-1 m-2 border md:w-64 w-4/5"/>
     </div>
 
     <div className="flex justify-center">
@@ -120,7 +120,7 @@ export default function SignUpForm(){
     placeholder="email@email.com"
     onChange={handleChange} 
     autoComplete="new-email"
-    className="p-1 m-2 ml-8 border w-64"/>
+    className="p-1 m-2 ml-8 border md:w-64 w-4/5"/>
     </div>
   
     <div className="flex justify-center">
@@ -136,7 +136,7 @@ export default function SignUpForm(){
     placeholder="password" 
     onChange={handleChange} 
     autoComplete="new-password"
-    className="p-1 m-1 border w-64"/>
+    className="p-1 m-1 border md:w-64 w-4/5"/>
     </div>
 
     <div className="flex justify-center">

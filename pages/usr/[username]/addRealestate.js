@@ -7,7 +7,6 @@ import toast, { Toaster } from 'react-hot-toast'
 
 export async function getServerSideProps({query}){
   const {username} = query
-  console.log(username)
   return {
     props: {username},
   }
@@ -83,7 +82,7 @@ const router = useRouter()
     placeholder="Name of realestate"
     onChange={handleChange}
     autoComplete="new-name"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
   </div>
 
@@ -100,12 +99,12 @@ const router = useRouter()
     placeholder="estimated house value" 
     onChange={handleChange} 
     autoComplete="new-value"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
     </div>
     <Toaster/>
     <div className="flex justify-center">
-    <button className="box-border p-1 m-2 border-4 rounded-lg">add asset</button>
+    <button className="box-border p-2 m-2 shadow-lg bg-yellow-200 rounded-md">Add Asset</button>
     </div>
     </form>
     </div>

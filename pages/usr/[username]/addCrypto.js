@@ -8,7 +8,6 @@ import toast, { Toaster } from 'react-hot-toast'
 
 export async function getServerSideProps({query}){
   const {username} = query
-  console.log(username)
   return {
     props: {username},
   }
@@ -85,14 +84,13 @@ const router = useRouter()
     placeholder="Coin Symbol (i.e BTC)"
     onChange={handleChange}
     autoComplete="new-name"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
     </div>
     <div>
     <label htmlFor="shares"
-    className=" pt-3"
-    >
-      Coins</label>
+    className="pt-3"
+    >Coins</label>
     <input 
     id="shares"
     type="integer" 
@@ -101,7 +99,7 @@ const router = useRouter()
     placeholder="how many Coins?" 
     onChange={handleChange} 
     autoComplete="new-shares"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-3/4"
     />
     </div>
     

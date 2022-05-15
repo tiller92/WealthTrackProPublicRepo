@@ -93,7 +93,7 @@ export default function LoginForm(){
     placeholder="username"
     onChange={handleChange}
     autoComplete="new-username"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
 
     <div>
@@ -106,7 +106,7 @@ export default function LoginForm(){
     placeholder="password" 
     onChange={handleChange} 
     autoComplete="new-password"
-    className="p-1 m-2 border w-64"
+    className="p-1 m-2 border md:w-64 w-4/5"
     />
 </div>
 

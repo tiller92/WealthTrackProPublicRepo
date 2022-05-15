@@ -14,7 +14,8 @@ useEffect(()=>{
 function handleLogout(e){
   console.log('logout')
   localStorage.clear()
-  router.push('/')
+  
+  return router.push('/')
 }
 
 function handleSignIn(){

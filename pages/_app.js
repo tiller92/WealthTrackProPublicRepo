@@ -5,8 +5,7 @@ import axios from 'axios'
 import { UsersContext, checkUser } from '../components/UsersContext';
 import { createContex } from "react";
 import Link from 'next/link';
-import Head from 'next/head';
-import useLocalStorage from '../components/UsersContext';
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -15,7 +14,7 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(useContext(UsersContext))
   useEffect(()=>{
     localStorage.username ? setUser(localStorage.username) : <Link href={'/'}></Link>
-  },[]);
+  });
 
 
 

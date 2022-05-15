@@ -35,8 +35,12 @@ export async function getServerSideProps({query}){
   return user
 }
  const user = main()
-
+ console.log(username, 'server username')
  
+
+//preload the use so that they dont have to refresh to add assets
+
+//server side load
  const stocksList = setListStocks(await user)
  function setListStocks(data){
    if(data){
@@ -46,8 +50,7 @@ export async function getServerSideProps({query}){
      return JSON.stringify([])
    }
  }
- 
-//TODO: you need make a server loaded list for each prop needed and drill them down. Use user asset as the example
+
  const cryptoList = setListCrypto(await user)
  function setListCrypto(data){
    if(data){
@@ -86,12 +89,12 @@ export async function getServerSideProps({query}){
    }
  }
   return {
-    props: {stocksList, cryptoList, realestateList, debtList, cashList},
+    props: {stocksList, cryptoList, realestateList, debtList, cashList, username},
   }
 }
 
 
-export default function UserHome({stocksList, cryptoList,realestateList, debtList, cashList}){
+export default function UserHome({stocksList, cryptoList,realestateList, debtList, cashList, username}){
 const router = useRouter()
 const [stockTotalsValue, setStockTotalValue] = useState(0)
 const [cryptoTotalValue, setCryptoTotalValue] = useState(0)
@@ -104,37 +107,33 @@ const initCryptoFromServer = JSON.parse(cryptoList)
 const initRealestateFromServer = JSON.parse(realestateList)
 const initDebtFromServer = JSON.parse(debtList)
 const initCashFromServer = JSON.parse(cashList)
-
+console.log(user, 'client')
 
 const [toggle, setToggle] = useState(false)
 const handleToggle = ()=>{
   setToggle(!toggle)
 }
+// need to check for user in user context
 
-const handleReload = ()=>{ window.location.reload() }
 const handleStockSubmit = (e) =>{
   e.preventDefault()
-if(user){
-  router.push(`/usr/${user}/addstock`)
-}else{
-  window.location.reload()
-}
+  router.push(`/usr/${username}/addstock`)
 }
 const handleCryptoSubmit = (e) =>{
   e.preventDefault()
-  router.push(`/usr/${user}/addCrypto`)
+  router.push(`/usr/${username}/addCrypto`)
 }
 const handleRealestateSubmit = (e) =>{
   e.preventDefault()
-  router.push(`/usr/${user}/addRealestate`)
+  router.push(`/usr/${username}/addRealestate`)
 }
 const handleDebtSubmit = (e) =>{
   e.preventDefault()
-  router.push(`/usr/${user}/addDebt`)
+  router.push(`/usr/${username}/addDebt`)
 }
 const handleCashSubmit = (e) =>{
   e.preventDefault()
-  router.push(`/usr/${user}/addCash`)
+  router.push(`/usr/${username}/addCash`)
 }
 
 //get the net worth state from 
@@ -146,9 +145,11 @@ useEffect(()=>{
   }
 },[])
 
+
+
   return (
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary w-full  h-full">
+    <div className="bg-gradient-to-r from-main-bg to-secondary w-screen  h-screen">
     <nav>
     <Menu></Menu>
     </nav>

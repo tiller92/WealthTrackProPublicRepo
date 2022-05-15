@@ -5,14 +5,22 @@ import { useRouter } from "next/router"
 import Menu from "../../../components/Menu"
 import toast, { Toaster } from 'react-hot-toast'
 
+export async function getServerSideProps({query}){
+  const {username} = query
+  console.log(username)
+  return {
+    props: {username},
+  }
+} 
 
-export default function AddStockForm(){
+
+export default function AddStockForm({username}){
   const user = useContext(UsersContext)
  
  const initailState = {
     name:'',
     value:'',
-    username:user,
+    username:username,
   }
   const [formData, setFormData] = useState(initailState)
    
@@ -30,7 +38,7 @@ export default function AddStockForm(){
     async function findUserInfo(){
         const res = await axios.post('/api/addRealestate',{
          ...formData,
-         username:user
+         username:username
         })
         if(res.status == 201){
           const realestateAddedNotify = ()=> toast.success(`Realestate was succesfully added!`)
@@ -53,7 +61,7 @@ const router = useRouter()
     <div className="bg-gradient-to-r from-main-bg to-secondary h-screen">
     <nav className="flex justify-between">
     <Menu></Menu>
-    <button onClick={()=>router.push(`/usr/${user}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
+    <button onClick={()=>router.push(`/usr/${username}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "
       >Home</button>
     </nav>
 

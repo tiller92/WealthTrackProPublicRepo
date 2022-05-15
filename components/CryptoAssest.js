@@ -12,11 +12,10 @@ import DeleteCrypto from "../components/DeleteCrypto"
 
 async function getPrice(arr){
   //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
-  const date = getTimeAndDate()
+  const date = await getTimeAndDate()
   const total = []
   for(let stock in arr){
     let res = await axios.get( `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${arr[stock].name}&market=USD&apikey=${ALPHA_API_KEY}'`)
-    console.log(res)
     let obj = {
             id:arr[stock].id,
             ticker: arr[stock].name,

@@ -49,16 +49,14 @@ function Assets({setCryptoTotalValue,cryptoList ,user}){
  
   useEffect(()=>{
   async function get(){
-  if(user){
+
   const res = await axios.get(`/api/${user}` )
   const tickers = res.data.crypto
   setUserTotals(await getPrice(tickers))
   setInfo(res.data.username)
   setStocks(res.data.crypto)
   setLoading(false)
-  }else{  
-    setUserTotals(cryptoList)
-  }
+
 }
 get()
 },[user])

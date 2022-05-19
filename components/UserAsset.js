@@ -51,8 +51,7 @@ function Assets({setStockTotalValue,stocksList, user}){
  
 //&& firstLoad == false add ti if
   useEffect(()=>{
-  async function get(){
-  // if(user){
+  async function get(){ 
   const res = await axios.get(`/api/${user}`)
   const tickers = res.data.stocks
   const date = await getTimeAndDate()
@@ -60,10 +59,7 @@ function Assets({setStockTotalValue,stocksList, user}){
   setInfo(res.data.username)
   setStocks(res.data.stocks)
   setLoading(false)
-  // }else{
-  //   // renders the info from the server
-  //   setUserTotals(stocksList)
-  // }
+
 }
 get()
 },[user])

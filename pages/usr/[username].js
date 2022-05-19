@@ -146,7 +146,7 @@ useEffect(()=>{
 
   return (
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary w-screen  h-screen">
+    {/* <div className="bg-gradient-to-r from-main-bg to-secondary w-auto h-auto"> */}
     <nav>
     <Menu></Menu>
     </nav>
@@ -193,7 +193,7 @@ useEffect(()=>{
           </div>
     </div>
     </main>
-    </div>
+    {/* </div> */}
     </>
   )
 

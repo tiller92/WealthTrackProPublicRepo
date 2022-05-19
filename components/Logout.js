@@ -11,11 +11,12 @@ useEffect(()=>{
   localStorage.username ? setUser(localStorage.username) : setUser('')
 })
 
+
 function handleLogout(e){
   console.log('logout')
   localStorage.clear()
-  
   return router.push('/')
+  
 }
 
 function handleSignIn(){

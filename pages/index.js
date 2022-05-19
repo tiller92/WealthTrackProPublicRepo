@@ -7,15 +7,10 @@ import { useRouter } from 'next/router'
 
 
 
-export default function Home() {
-  const user = useContext(UsersContext) 
+export default function Home({user}) {
   const router = useRouter()
   
-  if(user){
-    // load logged in pages
-  router.push(`/usr/${user}`)
-  //load the no user page
-  }else{
+  if(!user){
     return(
       <>  
     <div className='bg-gradient-to-r from-main-bg to-secondary  h-screen'>
@@ -27,7 +22,10 @@ export default function Home() {
       </div>
       </>
     )
+  }else{
+    // load logged in pages
+    return router.push(`/usr/${user}`)
+    //load the no user page
   }
 
 }
-

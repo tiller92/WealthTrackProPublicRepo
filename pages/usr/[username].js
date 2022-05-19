@@ -107,7 +107,7 @@ const initCryptoFromServer = JSON.parse(cryptoList)
 const initRealestateFromServer = JSON.parse(realestateList)
 const initDebtFromServer = JSON.parse(debtList)
 const initCashFromServer = JSON.parse(cashList)
-console.log(user, 'client')
+
 
 const [toggle, setToggle] = useState(false)
 const handleToggle = ()=>{

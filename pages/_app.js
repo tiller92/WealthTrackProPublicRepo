@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 function MyApp({ Component, pageProps }) {
   
-  //TODO: layout effect works better but errors
+  
   const [user, setUser] = useState(useContext(UsersContext))
   useEffect(()=>{
     localStorage.username ? setUser(localStorage.username) : <Link href={'/'}></Link>

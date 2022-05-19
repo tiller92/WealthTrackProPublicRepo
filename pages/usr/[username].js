@@ -35,8 +35,6 @@ export async function getServerSideProps({query}){
   return user
 }
  const user = main()
- console.log(username, 'server username')
- 
 
 //preload the use so that they dont have to refresh to add assets
 
@@ -82,7 +80,6 @@ export async function getServerSideProps({query}){
  function setListCash(data){
    if(data){
    const sList = [...data.cash]
-   console.log(sList)
    return JSON.stringify(sList)
    }else{
      return JSON.stringify([])
@@ -159,12 +156,12 @@ useEffect(()=>{
     {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue} cashTotalsValue={cashTotalsValue}></NetWorth>
 
     <div className="flex justify-center float-left flex-col w-4/12">
-    <UserAsset stocksList={initStocksFromServer} value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
+    <UserAsset user={username} stocksList={initStocksFromServer} value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
     <div className="flex justify-center" ><button className="box-border p-1 m-2 shadow-lg rounded-lg bg-emerald-400 flex justify-center" onClick={handleStockSubmit}><AiFillPlusCircle size={25} /> Stock/ETF</button></div>
     </div>
 
     <div className=" grid grid-cols-2 h-auto w-auto">
-    <CryptoAsset cryptoList={initCryptoFromServer} setCryptoTotalValue={setCryptoTotalValue}>
+    <CryptoAsset user={username} cryptoList={initCryptoFromServer} setCryptoTotalValue={setCryptoTotalValue}>
     </CryptoAsset>
     <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}>
     </RealestateAssest>

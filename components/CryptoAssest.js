@@ -10,6 +10,7 @@ import EditCryptoInLine from '../components/EditCryptoInLine'
 import DeleteCrypto from "../components/DeleteCrypto"
 
 
+
 async function getPrice(arr){
   //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
   const date = await getTimeAndDate()
@@ -35,9 +36,9 @@ async function getPrice(arr){
   return total
   }
 
-function Assets({setCryptoTotalValue,cryptoList}){
+function Assets({setCryptoTotalValue,cryptoList ,user}){
+  
   // Loads the users stocks to ETFs and then gets the current price
-  const user = useContext(UsersContext)
   const [userTotals, setUserTotals] = useState([])
   const totalCrypto = (num)=>{setCryptoTotalValue(num)}
   const [info, setInfo] = useState(null)
@@ -60,7 +61,7 @@ function Assets({setCryptoTotalValue,cryptoList}){
   }
 }
 get()
-},[user,setUserTotals])
+},[user])
 
 useEffect(()=>{
   let CryptoValue = 0

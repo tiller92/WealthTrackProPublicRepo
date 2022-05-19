@@ -11,11 +11,9 @@ import { useRouter } from 'next/router'
 
 
 
-  async function getPrice(arr){
+  async function getPrice(arr,date){
     //use the alpha vantage API to get the price of the ticker list that is passed to it
-    
-    const date = await getTimeAndDate()
-    console.log(date , 'get time and date function')
+  
     const total = []
     try{
     for(let stock in arr){
@@ -40,10 +38,9 @@ import { useRouter } from 'next/router'
     }
   
 
-function Assets({setStockTotalValue,stocksList}){
+function Assets({setStockTotalValue,stocksList, user}){
   // Loads the users stocks to ETFs and then gets the current price
   const [userTotals, setUserTotals] = useState([])
-  const user = useContext(UsersContext)
   const router = useRouter()
   const totalStocks = (num)=>{ setStockTotalValue(num)}
   const [info, setInfo] = useState(null)
@@ -55,18 +52,18 @@ function Assets({setStockTotalValue,stocksList}){
 //&& firstLoad == false add ti if
   useEffect(()=>{
   async function get(){
-  if(user ){
-  const res = await axios.get(`/api/${user}` )
+  // if(user){
+  const res = await axios.get(`/api/${user}`)
   const tickers = res.data.stocks
-  setUserTotals(await getPrice(tickers))
+  const date = await getTimeAndDate()
+  setUserTotals(await getPrice(tickers,date))
   setInfo(res.data.username)
   setStocks(res.data.stocks)
   setLoading(false)
-  }else{
-    // renders the info from the server
-    setUserTotals(stocksList)
-    // setFirstLoad(false)
-  }
+  // }else{
+  //   // renders the info from the server
+  //   setUserTotals(stocksList)
+  // }
 }
 get()
 },[user])

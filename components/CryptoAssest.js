@@ -14,6 +14,7 @@ async function getPrice(arr){
   //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
   const date = await getTimeAndDate()
   const total = []
+  try{
   for(let stock in arr){
     let res = await axios.get( `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${arr[stock].name}&market=USD&apikey=${ALPHA_API_KEY}'`)
     let obj = {
@@ -25,6 +26,9 @@ async function getPrice(arr){
           }
           total.push(obj)
   }
+}catch(err){
+  console.log(err)
+}
   for(let i of total){
       i.stockValue = round(i.price * i.shares,2)
   }
@@ -44,7 +48,7 @@ function Assets({setCryptoTotalValue,cryptoList}){
  
   useEffect(()=>{
   async function get(){
-  if(user && firstLoad == false){
+  if(user){
   const res = await axios.get(`/api/${user}` )
   const tickers = res.data.crypto
   setUserTotals(await getPrice(tickers))
@@ -53,7 +57,6 @@ function Assets({setCryptoTotalValue,cryptoList}){
   setLoading(false)
   }else{  
     setUserTotals(cryptoList)
-    setFirstLoad(false)
   }
 }
 get()

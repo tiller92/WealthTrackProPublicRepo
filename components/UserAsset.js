@@ -17,6 +17,7 @@ import { useRouter } from 'next/router'
     const date = await getTimeAndDate()
     console.log(date , 'get time and date function')
     const total = []
+    try{
     for(let stock in arr){
       let res = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${arr[stock].ticker}&apikey=${ALPHA_API_KEY}`)
       let obj = {
@@ -28,10 +29,14 @@ import { useRouter } from 'next/router'
             }
             total.push(obj)
     }
+  }catch(err){
+    console.log(err)
+  }
     for(let i of total){
         i.stockValue = round(i.price * i.shares, 2)
     }
     return total
+
     }
   
 
@@ -47,10 +52,10 @@ function Assets({setStockTotalValue,stocksList}){
   const [portfolio, setPortfolio] = useState(0)
   const [firstLoad, setFirstLoad] = useState(true)
  
-
+//&& firstLoad == false add ti if
   useEffect(()=>{
   async function get(){
-  if(user && firstLoad == false){
+  if(user ){
   const res = await axios.get(`/api/${user}` )
   const tickers = res.data.stocks
   setUserTotals(await getPrice(tickers))
@@ -60,7 +65,7 @@ function Assets({setStockTotalValue,stocksList}){
   }else{
     // renders the info from the server
     setUserTotals(stocksList)
-    setFirstLoad(false)
+    // setFirstLoad(false)
   }
 }
 get()

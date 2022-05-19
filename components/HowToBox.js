@@ -5,7 +5,7 @@ export default function HowToo({toggle}){
   if(toggle == true){
     return (
       <>
-     <div>
+     <div className="m-5">
        <p className="text-white">
          Welcome to Wealth Track Pro!
 

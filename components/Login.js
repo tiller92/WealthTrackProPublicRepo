@@ -4,6 +4,7 @@ import { useState, useEffect,useLayoutEffect, createContext, useContext } from "
 import { UsersContext } from "./UsersContext"
 import { useRouter } from "next/router"
 import Menu from "./Menu"
+import toast, { Toaster } from 'react-hot-toast'
 
 
 
@@ -44,7 +45,8 @@ export default function LoginForm(){
         //returns true of false
      
       if (res === true){
-      // localStorage.setItem('user',{...userInfo.user})
+        const stockAddedNotify = ()=> toast.success(`One Seccond!`)
+        stockAddedNotify()
       localStorage.setItem('first_name', userInfo.user.first_name)
       localStorage.setItem('last_name', userInfo.user.last_name)
       localStorage.setItem('username', userInfo.user.username)
@@ -53,7 +55,13 @@ export default function LoginForm(){
       console.log(localStorage) 
       setUser(userInfo.user.username)
       router.push(`/usr/${userInfo.user.username}`)
-    }})
+    }else{
+      console.log('something wrong')
+      const errorToast = ()=>toast.error('wrong username or password')
+      errorToast()
+    }
+  
+  })
     compare()
       // set login state
       }else{
@@ -109,8 +117,11 @@ export default function LoginForm(){
     className="p-1 m-2 border md:w-64 w-4/5"
     />
 </div>
+<Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
 
-   
     <div className="flex justify-center">
       <button className="box-border p-2 m-2 shadow-lg bg-yellow-200 rounded-md">Login</button>
     </div>

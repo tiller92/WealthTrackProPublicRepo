@@ -30,7 +30,7 @@ export default function GetStarted({user}){
         <button
          className="box-border p-4 w-10/12 m-2 border-4 
          rounded-lg transition ease-in-out delay-50 bg-yellow-200 hover:bg-indigo-500"
-         >Get Started!</button>
+         >Try as Guest</button>
       </form>
       <form  className="flex justify-center" action="/login">
         <button  className="box-border w-10/12 p-4 m-2 border-4 rounded-lg transition ease-in-out delay-50 bg-yellow-200 hover:bg-indigo-500 ">

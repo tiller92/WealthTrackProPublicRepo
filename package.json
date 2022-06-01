@@ -8,6 +8,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@next/swc-darwin-x64": "^12.1.6",
         "@prisma/client": "^3.14.0",
         "axios": "^0.25.0",
         "bcryptjs": "^2.4.3",

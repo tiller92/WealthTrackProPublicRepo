@@ -44,7 +44,6 @@ const router = useRouter()
     if(res.status == 201){
       const stockAddedNotify = ()=> toast.success(`stock was succesfully added!`)
       stockAddedNotify()
-    console.log(res, 'res from addstock ')
     }else{
       const errorToast = ()=>toast.error('sorry something went wrong')
       errorToast()

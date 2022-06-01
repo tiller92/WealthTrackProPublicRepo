@@ -7,7 +7,6 @@ import { useRouter }  from "next/router"
 import NetWorth from "../../components/NetWorth"
 import RealestateAssest from "../../components/RealestateAssest"
 import Debt from "../../components/Debt"
-import axios from "axios"
 import prisma from "../../lib/prismaExport"
 import {AiFillPlusCircle,AiOutlineReload} from 'react-icons/ai'
 import HowToBox from "../../components/HowToBox"
@@ -36,9 +35,6 @@ export async function getServerSideProps({query}){
 }
  const user = main()
 
-//preload the use so that they dont have to refresh to add assets
-
-//server side load
  const stocksList = setListStocks(await user)
  function setListStocks(data){
    if(data){
@@ -110,7 +106,7 @@ const [toggle, setToggle] = useState(false)
 const handleToggle = ()=>{
   setToggle(!toggle)
 }
-// need to check for user in user context
+
 
 const handleStockSubmit = (e) =>{
   e.preventDefault()
@@ -133,9 +129,7 @@ const handleCashSubmit = (e) =>{
   router.push(`/usr/${username}/addCash`)
 }
 
-//get the net worth state from 
 
-// checks for user
 useEffect(()=>{
   if(localStorage.username == '' || localStorage.username == undefined){
    return router.push(`/`)
@@ -146,18 +140,18 @@ useEffect(()=>{
 
   return (
     <>
-    {/* <div className="bg-gradient-to-r from-main-bg to-secondary w-auto h-auto"> */}
+  
     <nav>
     <Menu></Menu>
     </nav>
     <main className="flex justify-center h-5/6 m-5 ">
-    <div className=" h-full  w-11/12">
+    <div className=" h-full sm:w-11/12">
     <NetWorth  debtTotalsValue={debtTotalsValue} stockTotalsValue={stockTotalsValue} cryptoTotalValue=
     {cryptoTotalValue} realestateTotalsValue={realestateTotalsValue} cashTotalsValue={cashTotalsValue}></NetWorth>
 
     <div className="flex justify-center float-left flex-col w-4/12">
     <UserAsset user={username} stocksList={initStocksFromServer} value={user} setStockTotalValue={setStockTotalValue}></UserAsset>
-    <div className="flex justify-center" ><button className="box-border p-1 m-2 shadow-lg rounded-lg bg-emerald-400 flex justify-center" onClick={handleStockSubmit}><AiFillPlusCircle size={25} /> Stock/ETF</button></div>
+    <div className="flex justify-center" ><button className="box-border p-1 m-2 shadow-lg rounded-lg bg-emerald-400 flex justify-center" onClick={handleStockSubmit}><AiFillPlusCircle size={25} /> </button></div>
     </div>
 
     <div className=" grid grid-cols-2 h-auto w-auto">
@@ -166,11 +160,11 @@ useEffect(()=>{
     <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}>
     </RealestateAssest>
     <div className="flex justify-center" >
-    <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} />Crypto</button>
+    <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} /></button>
     </div>
     <div className="flex justify-center" >
       <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center  " onClick={handleRealestateSubmit}>
-        <AiFillPlusCircle size={25} /> Realestate</button>
+        <AiFillPlusCircle size={25} /></button>
         </div>
     <div>
     <Debt debtList={initDebtFromServer} setDebtTotalValue={setDebtTotalValue}>
@@ -180,11 +174,11 @@ useEffect(()=>{
     <Cash setCashTotalValue={setCashTotalValue} cashList={initCashFromServer} ></Cash>
    </div>
     <div className="flex justify-center col-span-1" >
-      <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleDebtSubmit}><AiFillPlusCircle size={25} /> Debt</button>
+      <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleDebtSubmit}><AiFillPlusCircle size={25} /> </button>
    </div>
   
    <div className="flex justify-center col-span-1" >
-      <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleCashSubmit}><AiFillPlusCircle size={25} /> Cash</button>
+      <button className="box-border p-1 m-2  shadow-lg  rounded-lg bg-emerald-400 flex justify-center " onClick={handleCashSubmit}><AiFillPlusCircle size={25} /> </button>
    </div>
     </div>
     <div className="relative flex justify-center m-5 top-10">
@@ -193,7 +187,7 @@ useEffect(()=>{
           </div>
     </div>
     </main>
-    {/* </div> */}
+ 
     </>
   )
 

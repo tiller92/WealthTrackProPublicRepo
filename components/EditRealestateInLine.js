@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import {MdOutlineModeEditOutline} from 'react-icons/Md'
+import {MdOutlineModeEditOutline} from 'react-icons/md'
 export default function EditInLine({id}){
   const initialState = {
     value:0,

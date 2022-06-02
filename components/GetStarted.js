@@ -22,7 +22,8 @@ export default function GetStarted({user}){
     <FiTrendingUp color={'#21E6C1'} size={80}/>
     </div>
   </header>
-  <div className="relative flex justify-center h-auto w-auto  " >
+ <div className="flex justify-center">
+  <div className="relative flex justify-center h-auto w-10/12 max-w-7xl  " >
     <div className="box-border border bg-fourth-green shadow-slate-900 shadow-lg m-5 p-2 w-8/12 h-full rounded-lg ">
      
     <div className="flex flex-col justify-center m-auto">
@@ -45,13 +46,13 @@ export default function GetStarted({user}){
         </div>
         </div>
         </div>
-
+        </div>
         <div className="relative flex justify-center m-5 top-20 ">
             <button onClick={handleToggle} ><HowToBox
             
             toggle={toggle}></HowToBox></button>
           </div>
-       
+          
     </>
    )
  }

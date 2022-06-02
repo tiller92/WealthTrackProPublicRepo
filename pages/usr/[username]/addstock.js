@@ -42,7 +42,7 @@ const router = useRouter()
          username:username
         })
     if(res.status == 201){
-      const stockAddedNotify = ()=> toast.success(`stock was succesfully added!`)
+      const stockAddedNotify = ()=> toast.success(`${formData.ticker} was succesfully added!`)
       stockAddedNotify()
     }else{
       const errorToast = ()=>toast.error('sorry something went wrong')
@@ -58,7 +58,8 @@ const router = useRouter()
 
   return(
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary h-screen">
+    {/* <div className="bg-gradient-to-r from-main-bg to-secondary h-screen"> */}
+    <div className='bg-slate-900  h-screen'>
     <nav className="flex justify-between">
       <Menu></Menu>
       <button onClick={()=>router.push(`/usr/${username}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "

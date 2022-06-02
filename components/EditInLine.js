@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import {MdOutlineModeEditOutline} from 'react-icons/Md'
 
 export default function EditInLine({id}){
   const initialState = {
@@ -50,7 +51,7 @@ export default function EditInLine({id}){
   )
   }else{
     return (
-    <button onClick={handleToggle} className='flex float-right mr-2'>Edit</button>
+    <button onClick={handleToggle} className='flex float-right mt-1 mr-2'><MdOutlineModeEditOutline /></button>
     )
   }
 }

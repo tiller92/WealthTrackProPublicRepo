@@ -28,7 +28,7 @@ send()
   return (
     <>
     <button className="flex float-right mt-1" onClick={handleDelete}>
-      <AiOutlineDelete/>
+      <AiOutlineDelete color="red"/>
 </button>
     </>
   )

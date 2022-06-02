@@ -9,7 +9,7 @@ import RealestateAssest from "../../components/RealestateAssest"
 import Debt from "../../components/Debt"
 import prisma from "../../lib/prismaExport"
 import {AiFillPlusCircle,AiOutlineReload} from 'react-icons/ai'
-import HowToBox from "../../components/HowToBox"
+import HowToBoxIn from "../../components/HowToBoxIn"
 import Cash from '../../components/Cash'
  
 //TODO: This will load the data you needfot the intail load that is rendering then the data will be refreshed by the use when they add things. it doesnt work
@@ -160,7 +160,7 @@ useEffect(()=>{
     <RealestateAssest realestateList={initRealestateFromServer} setRealestateTotalValue={setRealestateTotalValue}>
     </RealestateAssest>
     <div className="flex justify-center" >
-    <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} /></button>
+    <button className="box-border p-1 m-2   rounded-lg bg-emerald-400 flex justify-center " onClick={handleCryptoSubmit}><AiFillPlusCircle size={25} /></button>
     </div>
     <div className="flex justify-center" >
       <button className="box-border p-1 m-2  shadow-lg rounded-lg bg-emerald-400 flex justify-center  " onClick={handleRealestateSubmit}>
@@ -182,8 +182,8 @@ useEffect(()=>{
    </div>
     </div>
     <div className="relative flex justify-center m-5 top-10">
-            <button onClick={handleToggle} ><HowToBox
-            toggle={toggle}></HowToBox></button>
+            <button onClick={handleToggle} ><HowToBoxIn
+            toggle={toggle}></HowToBoxIn></button>
           </div>
     </div>
     </main>

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-
+import {MdOutlineModeEditOutline} from 'react-icons/Md'
 export default function EditCryptoInLine({id}){
   const initialState = {
     shares:'',
@@ -50,7 +50,7 @@ export default function EditCryptoInLine({id}){
   )
   }else{
     return (
-    <button onClick={handleCToggle} className='flex float-right mr-2'>Edit</button>
+    <button onClick={handleCToggle} className='flex float-right mt-1 mr-2'><MdOutlineModeEditOutline /></button>
     )
   }
 }

@@ -43,7 +43,7 @@ export default function AddStockForm({username}){
          username:username
         })
         if(res.status == 201){
-          const debtAddedNotify = ()=> toast.success(`stock was succesfully added!`)
+          const debtAddedNotify = ()=> toast.success(`${formData.type} was succesfully added!`)
           debtAddedNotify()
         console.log(res, 'res from addstock ')
         }else{

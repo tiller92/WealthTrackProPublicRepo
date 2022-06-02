@@ -51,7 +51,8 @@ export default function SignUpForm(){
   }
   return(
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary  h-screen" >
+    {/* <div className="bg-gradient-to-r from-main-bg to-secondary  h-screen" > */}
+    <div className='bg-slate-900  h-screen'>
         <nav className="flex justify-between">
       <Menu></Menu>
       <button onClick={()=>router.push(`/`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "

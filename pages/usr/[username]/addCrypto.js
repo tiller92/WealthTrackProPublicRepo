@@ -5,6 +5,7 @@ import { Router } from "react-router"
 import { useRouter } from "next/router"
 import Menu from "../../../components/Menu"
 import toast, { Toaster } from 'react-hot-toast'
+import {ALPHA_API_KEY} from '../../../secret'
 
 export async function getServerSideProps({query}){
   const {username} = query
@@ -35,15 +36,27 @@ export default function AddStockForm({username}){
   const handleSubmit = (e) =>{
     // sends login data to api update user state
     e.preventDefault()
+    async function checkForCoinAPI(){
+      const res1 = await axios.get( `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${formData.name}&market=USD&apikey=${ALPHA_API_KEY}'`)
+      if(res1['data']['Meta Data']){
+        findUserInfo()
+      }else{
+        const errorToast = ()=>toast.error('check to make sure you have the right symbol')
+          errorToast()
+       
+      }
+    
+    
+    
     async function findUserInfo(){
         const res = await axios.post('/api/addCrypto',{
          ...formData,
          username:username
         })
         if(res.status == 201){
-          const stockAddedNotify = ()=> toast.success(`stock was succesfully added!`)
+          const stockAddedNotify = ()=> toast.success(`${formData.name} was succesfully added!`)
           stockAddedNotify()
-        console.log(res, 'res from addstock ')
+       
         }else{
           const errorToast = ()=>toast.error('sorry something went wrong')
           errorToast()
@@ -51,14 +64,18 @@ export default function AddStockForm({username}){
     setFormData(initailState)
     
   }
-  findUserInfo()
+  
 } 
+checkForCoinAPI()
+}
+
 const router = useRouter()
 
 
   return(
     <>
-    <div className="bg-gradient-to-r from-main-bg to-secondary h-screen">
+    {/* <div className="bg-gradient-to-r from-main-bg to-secondary h-screen"> */}
+    <div className='bg-slate-900  h-screen'>
     <nav className="flex justify-between">
       <Menu></Menu>
       <button onClick={()=>router.push(`/usr/${username}`)} className="box-border p-1 m-5 border-1 shadow-md rounded-lg w-32 h-16 bg-yellow-200 transition ease-in-out delay-150 hover:bg-emerald-400 duration-300 "

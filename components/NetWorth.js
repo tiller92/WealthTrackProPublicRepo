@@ -10,12 +10,13 @@ export default function NetWorth({stockTotalsValue,cryptoTotalValue, realestateT
   const netWorth = (stockTotalsValue + cryptoTotalValue + realestateTotalsValue + cashTotalsValue) - (debtTotalsValue)
   
   const roundWorth = round(netWorth,2)
+
   const handleReload = ()=>{ window.location.reload() }
   
 if(roundWorth){
   return ( 
   <>
-  <div className="border border-box p-4 bg-emerald-200 shadow-lg shadow-slate-400 rounded-lg flex justify-center  m-5 ">
+  <div className=" border border-box p-4 text-slate-100 rounded-lg flex justify-center mx-3 my-5 ">
     <p className=''>Net Worth: ${roundWorth}</p> 
      <button onClick={handleReload} className='ml-4'>< AiOutlineReload size={20} /></button>
     </div>
@@ -24,7 +25,7 @@ if(roundWorth){
 }else{
   return (
     <>
-    <div className="border border-box p-4 bg-emerald-200 shadow-lg shadow-slate-400 rounded-lg flex justify-center  m-5 "> 
+    <div className="border border-box p-4 text-slate-100   rounded-lg flex justify-center  m-5 "> 
        <button onClick={handleReload} className='ml-4'>< AiOutlineReload size={20} /></button>
       </div>
     </>

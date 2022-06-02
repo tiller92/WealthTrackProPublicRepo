@@ -13,7 +13,8 @@ export default function Home({user}) {
   if(!user){
     return(
       <>  
-    <div className='bg-gradient-to-r from-main-bg to-secondary  h-screen'>
+    {/* <div className='bg-gradient-to-r from-main-bg to-secondary  h-screen'> */}
+    <div className='bg-slate-900  h-screen'>
       <nav>
       </nav>
       <main>
@@ -23,9 +24,8 @@ export default function Home({user}) {
       </>
     )
   }else{
-    // load logged in pages
     return router.push(`/usr/${user}`)
-    //load the no user page
+  
   }
 
 }

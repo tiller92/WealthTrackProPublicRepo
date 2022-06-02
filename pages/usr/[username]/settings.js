@@ -21,7 +21,8 @@ export default function SettingsPage(){
 
   return (
     <>
-    <div className="absolute bg-gradient-to-r from-main-bg to-secondary w-screen  h-screen">
+    {/* <div className="absolute bg-gradient-to-r from-main-bg to-secondary w-screen  h-screen"> */}
+    <div className='bg-slate-900  h-screen'>
     <div>
     <Menu></Menu>
     </div>

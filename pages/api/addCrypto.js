@@ -14,6 +14,7 @@ export default async function handler(req, res) {
                 owner: { connect: { username: new_stock.username } }
             }
         })
+        console.log(userstock, ' this is user stock')
     }
     const crypto = await main()
     res.status(201).json({ crypto: crypto }, 'add crypto test')

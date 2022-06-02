@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import Menu from '../../../components/Menu'
 import toast, { Toaster } from 'react-hot-toast'
 import { BsCheckSquareFill } from "react-icons/bs";
+import {ALPHA_API_KEY} from '../../../secret'
 
 export async function getServerSideProps({query}){
   const {username} = query
@@ -12,6 +13,7 @@ export async function getServerSideProps({query}){
     props: {username},
   }
 } 
+
 
 
 export default function AddStockForm({username}){
@@ -36,6 +38,16 @@ const router = useRouter()
   const handleSubmit = (e) =>{
     // sends login data to api update user state
     e.preventDefault()
+    async function checkForStock(){
+      const res1 = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${formData.ticker}&apikey=${ALPHA_API_KEY}`)
+      if(res1['data']['Meta Data']){
+        findUserInfo()
+      }else{
+        const errorToastNoTic = ()=>toast.error('Not a Valid Ticker')
+        errorToastNoTic()
+      }
+    }
+    checkForStock()
     async function findUserInfo(){
         const res = await axios.post('/api/addstock',{
          ...formData,
@@ -47,11 +59,12 @@ const router = useRouter()
     }else{
       const errorToast = ()=>toast.error('sorry something went wrong')
       errorToast()
+     
     }
     setFormData(initailState)
     
   }
-  findUserInfo()
+  // findUserInfo()
 } 
 
 

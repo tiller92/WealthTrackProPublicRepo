@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
             },
         })
-        console.log(deleteUser)
+
     }
     const del = await main()
     res.status(202).json({ data: 'req works' }, 'user deleted')

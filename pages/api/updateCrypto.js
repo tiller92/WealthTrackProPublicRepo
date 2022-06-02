@@ -4,7 +4,6 @@ import prisma from "../../lib/prismaExport"
 export default async function handler(req, res) {
 
     const info = req.body
-    console.log(info, 'crypto')
 
     async function main() {
         const deleteUser = await prisma.Usercrypto.update({

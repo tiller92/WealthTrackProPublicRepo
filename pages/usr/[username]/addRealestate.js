@@ -41,8 +41,8 @@ export default function AddStockForm({username}){
         })
         if(res.status == 201){
           const realestateAddedNotify = ()=> toast.success(`${formData.name} was succesfully added!`)
-          realestateAddedNotify
-        console.log(res, 'res from addstock ')
+          realestateAddedNotify()
+        console.log(res, 'res from addrealsatate')
         }else{
           const errorToast = ()=>toast.error('sorry something went wrong')
           errorToast()

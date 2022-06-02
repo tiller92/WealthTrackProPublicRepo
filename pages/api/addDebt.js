@@ -4,7 +4,6 @@ import prisma from "../../lib/prismaExport"
 export default async function handler(req, res) {
 
     const new_stock = req.body
-    console.log(new_stock)
 
     async function main() {
         const userdebt = await prisma.Userdebt.create({

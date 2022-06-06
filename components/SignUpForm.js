@@ -109,7 +109,7 @@ export default function SignUpForm(){
 
     <div className="sm:flex sm:justify-center">
     <label htmlFor="email"
-    className="pr-5 sm:p-1 sm:pt-3 sm:mr-2">Email</label>
+    className="p-3 sm:p-1 sm:pt-3 sm:mr-2">Email</label>
     <input type="email"
     id="email"
     name="email"

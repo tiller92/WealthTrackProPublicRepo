@@ -60,13 +60,13 @@ export default function SignUpForm(){
     </nav>
 
     <div className="flex justify-center">
-    <div className="border bg-emerald-400 shadow-slate-900 shadow-lg m-5 p-2 w-6/12 rounded-lg flex justify-center ">
+    <div className="border bg-emerald-400 shadow-slate-900 shadow-lg p-4 sm:m-5 sm:p-2 sm:w-6/12 rounded-lg flex justify-center ">
 
     <form className="" onSubmit={handleSubmit}>
-    <div className="flex justify-center">
-
+    
+    <div className="sm:flex sm:justify-center">
     <label htmlFor="username"
-    className="pt-3"
+    className="sm:pt-3"
     >Username</label>
     <input 
     id="username"
@@ -76,44 +76,40 @@ export default function SignUpForm(){
     placeholder="username"
     onChange={handleChange}
     autoComplete="new-username"
-    className="p-1 m-2 ml-4 border md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-2 sm:ml-4 border sm:w-64 md:w-64 w-4/5"/>
     </div>
 
-    <div className="flex justify-center">
-
+    <div className="sm:flex  sm:justify-center">
     <label htmlFor="first_name"
-    className="pt-3">Fisrt Name</label>
+    className="sm:pt-3">First Name</label>
     <input 
     id="first_name"
     type="text" 
     name='first_name' 
     value={formData.first_name}
-    placeholder=""
+    placeholder="Joe"
     onChange={handleChange}
     autoComplete="new_fistname"
-    className="p-1 m-2 border md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-2 borde md:w-64 w-4/5"/>
     </div>
 
-    <div className="flex justify-center">
-
+    <div className="sm:flex sm:justify-center">
     <label htmlFor="last_name"
-    className="pt-3">Last Name</label>
+    className="sm:pt-3">Last Name</label>
     <input 
     id="last_name"
     type="text" 
     name='last_name' 
     value={formData.last_name}
-    placeholder=""
+    placeholder="Smoe"
     onChange={handleChange}
     autoComplete="new_lastname"
-    className="p-1 m-2 border md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-2 border md:w-64 w-4/5"/>
     </div>
 
-    <div className="flex justify-center">
-
+    <div className="sm:flex sm:justify-center">
     <label htmlFor="email"
-    className="p-1 pt-3 mr-2"
-    >Email</label>
+    className="pr-5 sm:p-1 sm:pt-3 sm:mr-2">Email</label>
     <input type="email"
     id="email"
     name="email"
@@ -121,13 +117,12 @@ export default function SignUpForm(){
     placeholder="email@email.com"
     onChange={handleChange} 
     autoComplete="new-email"
-    className="p-1 m-2 ml-8 border md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-2 sm:ml-8 border md:w-64 w-4/5"/>
     </div>
   
-    <div className="flex justify-center">
-
+    <div className="sm:flex sm:justify-center">
     <label htmlFor="password"
-    className="p-1 pt-3"
+    className="sm:p-1 sm:pt-3"
     >Password</label>
     <input 
     id="password"
@@ -137,11 +132,10 @@ export default function SignUpForm(){
     placeholder="password" 
     onChange={handleChange} 
     autoComplete="new-password"
-    className="p-1 m-1 border md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-1 border md:w-64 w-4/5"/>
     </div>
 
     <div className="flex justify-center">
-
     <button className="box-border p-2 m-2 shadow-lg bg-yellow-200 rounded-md">Sign Up</button>
     </div>
     </form>

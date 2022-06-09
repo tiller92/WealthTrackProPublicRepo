@@ -11,6 +11,7 @@ import prisma from "../../lib/prismaExport"
 import {AiFillPlusCircle,AiOutlineReload} from 'react-icons/ai'
 import HowToBoxIn from "../../components/HowToBoxIn"
 import Cash from '../../components/Cash'
+
  
 //TODO: This will load the data you needfot the intail load that is rendering then the data will be refreshed by the use when they add things. it doesnt work
 export async function getServerSideProps({query}){
@@ -187,7 +188,7 @@ useEffect(()=>{
           </div>
     </div>
     </main>
- 
+    
     </>
   )
 

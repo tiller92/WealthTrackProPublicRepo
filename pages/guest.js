@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { useContext, useEffect, useMemo, useState } from "react"
 import { UsersContext } from "../components/UsersContext"
 import getRandomInt from "../lib/randomNum"
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function GuestLoader(){
   const router = useRouter()
@@ -43,7 +44,15 @@ export default function GuestLoader(){
 
   return(
     <>
-    <h1>loading</h1>
+   
+      <div className="flex justify-center sm:flex sm:justify-center">
+        <p className="text-white text-2xl">
+          Creating Guest Account
+        </p>
+      </div>
+      <div className="flex justify-center sm:flex sm:justify-center">
+    <ClipLoader loading={true} size={150} color={'white'}/>
+    </div>
     </>
   )
 }

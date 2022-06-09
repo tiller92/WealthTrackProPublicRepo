@@ -90,7 +90,7 @@ export default function SignUpForm(){
     placeholder="Joe"
     onChange={handleChange}
     autoComplete="new_fistname"
-    className="sm:p-1 sm:m-2 borde md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-2 border md:w-64 w-4/5"/>
     </div>
 
     <div className="sm:flex sm:justify-center">
@@ -109,7 +109,7 @@ export default function SignUpForm(){
 
     <div className="sm:flex sm:justify-center">
     <label htmlFor="email"
-    className="p-3 sm:p-1 sm:pt-3 sm:mr-2">Email</label>
+    className="sm:pt-3 sm:px-5 pr-5">Email</label>
     <input type="email"
     id="email"
     name="email"
@@ -117,7 +117,7 @@ export default function SignUpForm(){
     placeholder="email@email.com"
     onChange={handleChange} 
     autoComplete="new-email"
-    className="sm:p-1 sm:m-2 sm:ml-8 border md:w-64 w-4/5"/>
+    className="sm:p-1 sm:m-2 border md:w-64 w-4/5"/>
     </div>
   
     <div className="sm:flex sm:justify-center">

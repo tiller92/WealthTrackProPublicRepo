@@ -3,7 +3,7 @@ import axios from "axios"
 import ClipLoader from "react-spinners/ClipLoader"
 import { useRouter } from "next/router"
 
-export default function({username}){
+export default function ChagneUserInfo({username}){
   const [loading ,setLoading] = useState(false)
   const router = useRouter()
 

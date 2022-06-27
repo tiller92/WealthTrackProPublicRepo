@@ -17,7 +17,6 @@ export default function EditCryptoInLine({id}){
         const res = await axios.post('/api/updateCrypto', {
           ...formData,
         })
-        console.log(res, 'update')
       }
       updateCDB()
       window.location.reload()

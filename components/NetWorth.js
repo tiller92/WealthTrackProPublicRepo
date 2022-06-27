@@ -1,5 +1,3 @@
-import { useContext, useEffect, useState } from "react"
-import { NetWorthContext } from "./NetWorthContext"
 import {round} from '../lib/round'
 import {AiOutlineReload} from 'react-icons/ai'
 

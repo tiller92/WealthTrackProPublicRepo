@@ -34,15 +34,14 @@ export default function SignUpForm(){
       const res = await axios.post('/api/adduser', {
       ...formData    
     })
-    console.log(res)
-    //TODO: add this tie lcoal storage and then push to the user home page
+
+    //push to user
     if(res.status === 200){
       const userInfo = res.data.newUser  
       return router.push(`/login`)
       }else{
-        //TODO: make and errorr component that takes an error and displays it
+        //display error in console
         console.log('error occurred') 
-        console.log(res.status)
         return router.push('/signup')
       }
     }
@@ -51,7 +50,7 @@ export default function SignUpForm(){
   }
   return(
     <>
-    {/* <div className="bg-gradient-to-r from-main-bg to-secondary  h-screen" > */}
+  
     <div className='bg-slate-900  h-screen'>
         <nav className="flex justify-between">
       <Menu></Menu>

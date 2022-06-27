@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import Logout from '../components/Logout.js'
 
 export default function Menu(){

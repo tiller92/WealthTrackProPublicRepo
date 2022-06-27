@@ -18,7 +18,7 @@ export default function EditInLine({id}){
         const res = await axios.post('/api/updateRealestate', {
           ...formData,
         })
-        console.log(res, 'update')
+       
       }
       updateDB()
       window.location.reload()

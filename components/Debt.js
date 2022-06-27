@@ -12,6 +12,7 @@ export default function Debt({setDebtTotalValue, debtList}){
   const [firstLoad, setFirstLoad] = useState(true)
 
   useEffect(()=>{
+    // when page rerenders will get the updated information and update the net worth component 
    if(user && firstLoad == false){
      async function getDebt(){
        const res = await axios.get(`/api/${user}`)
@@ -26,7 +27,7 @@ export default function Debt({setDebtTotalValue, debtList}){
 
   
   useEffect(()=>{
-    // add up debt from db
+    // add up debt for the net worth component 
     let debtTotal = 0
     for(let i in debt){
       debtTotal += parseFloat(debt[i].debt)
@@ -36,15 +37,6 @@ export default function Debt({setDebtTotalValue, debtList}){
     setPortfolio(debtRound)
   },[debt])
 
-  // if(!debt){
-  //   return (
-  //     <>
-  //     <div className='col-span-1 box-content border-4' >
-  //     <p>add debt</p>
-  //     </div>
-  //     </>
-  //   )
-  // }
   
   return ( 
     <>

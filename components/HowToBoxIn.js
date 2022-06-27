@@ -9,8 +9,6 @@ export default function HowTooBoxIn({toggle}){
       <p className="text-white">
           Hit the plus sign under an asset or liability. Once added to your account your net worth will update. Stocks and Crypto information will be fetched using the Alphavantage API. 
       </p>
-
-    
      </div>
       </>
     )

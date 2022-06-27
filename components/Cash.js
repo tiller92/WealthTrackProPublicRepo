@@ -7,7 +7,7 @@ import DeleteCash from '../components/DeleteCash'
 
 
 
-// pass in cash list and update SSR
+// Displays Cash info from users. If SSR avaible it will fill the cash array. 
 export default function Debt({setCashTotalValue, cashList}){
   const user = useContext(UsersContext)
   const [cash, setCash] = useState([])
@@ -15,6 +15,7 @@ export default function Debt({setCashTotalValue, cashList}){
   const [firstLoad, setFirstLoad] = useState(true)
 
   useEffect(()=>{
+    //checks for a first load to enusre SSR and client render dont both happen. Makes the call to load user data
    if(user && firstLoad == false){
      async function getCash(){
        const res = await axios.get(`/api/${user}`)
@@ -30,7 +31,7 @@ export default function Debt({setCashTotalValue, cashList}){
 
   
   useEffect(()=>{
-    // add up debt from db
+    // add up cash from from array for the net worth component. 
     let cashTotal = 0
     for(let i in cash){
       cashTotal += parseFloat(cash[i].amount)

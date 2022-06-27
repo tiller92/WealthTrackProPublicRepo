@@ -15,10 +15,8 @@ export default function deleteReal({id,user}){
         }
       })
       if(res.status === 204){
-        console.log('DELETED')
         window.location.reload()
       }
-      console.log(res)
     }
 send()
 }

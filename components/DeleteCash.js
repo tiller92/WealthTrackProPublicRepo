@@ -1,11 +1,8 @@
 import axios from "axios"
-import { PrismaClient, prisma } from '@prisma/client'
-import {useRouter}  from 'next/link'
 import {AiOutlineDelete} from 'react-icons/ai';
 
 
 export default function deleteReal({id,user}){
-  
   const handleDelete = (e) => {
     async function send(){
       console.log(id)
@@ -15,10 +12,8 @@ export default function deleteReal({id,user}){
         }
       })
       if(res.status === 204){
-        console.log('DELETED')
         window.location.reload()
       }
-      console.log(res)
     }
 send()
 }

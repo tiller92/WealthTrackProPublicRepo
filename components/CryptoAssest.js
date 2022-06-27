@@ -12,7 +12,7 @@ import DeleteCrypto from "../components/DeleteCrypto"
 
 
 async function getPrice(arr){
-  //TODO: use the alpha vantage API to get the price of the ticker list that is passed to it
+  // This function leverages the alpha vantage api to get upto date stock information. 
   const date = await getTimeAndDate()
   const total = []
   try{
@@ -38,7 +38,7 @@ async function getPrice(arr){
 
 function Assets({setCryptoTotalValue,cryptoList ,user}){
   
-  // Loads the users stocks to ETFs and then gets the current price
+  // displays updated user crypto assets. uses SSR and client render
   const [userTotals, setUserTotals] = useState([])
   const totalCrypto = (num)=>{setCryptoTotalValue(num)}
   const [info, setInfo] = useState(null)
@@ -48,8 +48,8 @@ function Assets({setCryptoTotalValue,cryptoList ,user}){
   const [firstLoad, setFirstLoad] = useState(true)
  
   useEffect(()=>{
+    // get user information whenver the page renders.
   async function get(){
-
   const res = await axios.get(`/api/${user}` )
   const tickers = res.data.crypto
   setUserTotals(await getPrice(tickers))
@@ -62,6 +62,7 @@ get()
 },[user])
 
 useEffect(()=>{
+  // add the data needed for the net worth component
   let CryptoValue = 0
   for(let i in userTotals){
     CryptoValue += userTotals[i].stockValue
@@ -72,8 +73,6 @@ useEffect(()=>{
 }
 ,[user,userTotals])
 
-
-//TODO: make this a table. Need to have an edit option
   return (
     <>
     <div className="asset box-content  p-2 border rounded-md m-3">

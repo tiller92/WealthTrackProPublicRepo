@@ -1,15 +1,15 @@
 import axios from "axios"
 import { useRouter } from "next/router"
 import { useContext, useEffect, useMemo, useState } from "react"
-import { UsersContext } from "../components/UsersContext"
 import getRandomInt from "../lib/randomNum"
 import ClipLoader from "react-spinners/ClipLoader";
 
 export default function GuestLoader(){
+  // guest options creates a guest account and adds its to the db. TODO:still need to prompt user to update username and password
   const router = useRouter()
   const [guest,setGuest] = useState(`guest${getRandomInt(10000)}`)
   const [user,setUser] = useState(null)
-  //useContext(UsersContext)
+  
   
   useEffect(()=>{
     user ? router.push(`/usr/${user}`): console.log('create guest')

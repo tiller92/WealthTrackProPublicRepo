@@ -1,15 +1,13 @@
 
 import { useContext,useEffect, useState,useLayoutEffect } from 'react'
 import '../styles/globals.css'
-import axios from 'axios'
 import { UsersContext, checkUser } from '../components/UsersContext';
-import { createContex } from "react";
 import Link from 'next/link';
 
 
 
 function MyApp({ Component, pageProps }) {
-  
+  // user logic then user context added. Any time home page is loaded
   
   const [user, setUser] = useState(useContext(UsersContext))
   useEffect(()=>{

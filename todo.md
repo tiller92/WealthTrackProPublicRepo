@@ -1,4 +1,8 @@
-1. create basic user stock list.
-2. display the current stock/ ETF price 
-3. then track how many shares they have and thene take the price and get there total 
-4. then give them projections 
+ 1. user portfolio projections
+ 2. more personal finace tools
+ 3. email updates for users
+
+
+
+Remove and add this to next on deployment 
+// "@next/swc-darwin-x64": "^12.1.6",

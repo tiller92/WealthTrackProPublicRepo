@@ -1,10 +1,6 @@
 import GetStarted from '../components/GetStarted'
 import { useRouter } from 'next/router'
 
-
-
-
-
 export default function Home({user}) {
   const router = useRouter()
   if(!user){

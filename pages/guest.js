@@ -10,7 +10,6 @@ export default function GuestLoader(){
   const [guest,setGuest] = useState(`guest${getRandomInt(10000)}`)
   const [user,setUser] = useState(null)
   
-  
   useEffect(()=>{
     user ? router.push(`/usr/${user}`): console.log('create guest')
   })
@@ -39,12 +38,10 @@ export default function GuestLoader(){
       }
   }
       addUser()
-     
     })
 
   return(
     <>
-   
       <div className="flex justify-center sm:flex sm:justify-center">
         <p className="text-white text-2xl">
           Creating Guest Account

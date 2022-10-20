@@ -1,3 +1,4 @@
+ 1. add date and time for when use is created
  1. user portfolio projections
  2. more personal finace tools
  3. email updates for users

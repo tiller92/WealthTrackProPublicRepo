@@ -17,6 +17,7 @@ model User {
   email      String
   username   String @unique
   password   String
+  date String?
   stocks Userstocks[]
   crypto Usercrypto[]
   realestate Userrealestate[]

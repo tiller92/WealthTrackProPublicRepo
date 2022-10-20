@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { useState, useEffect, useContext } from "react"
 import { UsersContext } from "./UsersContext"
 import Menu from "./Menu"
+import {date} from "../lib/date"
 
 
 
@@ -19,6 +20,7 @@ export default function SignUpForm(){
     last_name:'',
     email:'',
     password:'',
+    date:date,
   }
   const [formData, setFormData] = useState(initailState)
   const handleChange = (e) => {

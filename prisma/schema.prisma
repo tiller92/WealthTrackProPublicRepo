@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native"]
 }
 
@@ -8,61 +8,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 model User {
-  id         Int    @id @default(autoincrement())
+  id         Int              @id @default(autoincrement())
   first_name String
   last_name  String
   email      String
-  username   String @unique
+  username   String           @unique
   password   String
-  date String?
-  stocks Userstocks[]
-  crypto Usercrypto[]
+  date       String?
+  cash       Usercash[]
+  crypto     Usercrypto[]
+  debt       Userdebt[]
   realestate Userrealestate[]
-  debt Userdebt[]
-  cash Usercash[]
+  stocks     Userstocks[]
 }
 
 model Userstocks {
-  id  Int @id @default(autoincrement())
-  ticker String
-  shares Decimal
-  owner User @relation(fields: [ownerName],references: [username])
+  id        Int     @id @default(autoincrement())
+  ticker    String
+  shares    Decimal
   ownerName String
+  owner     User    @relation(fields: [ownerName], references: [username])
 }
 
 model Usercrypto {
-   id  Int @id @default(autoincrement())
-  name String
-  shares Decimal
-  owner User @relation(fields: [ownerName],references: [username])
+  id        Int     @id @default(autoincrement())
+  name      String
+  shares    Decimal
   ownerName String
+  owner     User    @relation(fields: [ownerName], references: [username])
 }
 
 model Userrealestate {
-  id  Int @id @default(autoincrement())
-  name String
-  value Decimal
-  owner User @relation(fields: [ownerName],references: [username])
+  id        Int     @id @default(autoincrement())
+  name      String
+  value     Decimal
   ownerName String
+  owner     User    @relation(fields: [ownerName], references: [username])
 }
 
 model Userdebt {
-  id  Int @id @default(autoincrement())
-  type String
-  interest Decimal
-  debt Decimal
-  owner User @relation(fields: [ownerName],references: [username])
+  id        Int     @id @default(autoincrement())
+  type      String
+  interest  Decimal
+  debt      Decimal
   ownerName String
+  owner     User    @relation(fields: [ownerName], references: [username])
 }
 
 model Usercash {
-  id  Int @id @default(autoincrement())
-  amount Decimal
-  owner User @relation(fields: [ownerName], references: [username])
+  id        Int     @id @default(autoincrement())
+  amount    Decimal
   ownerName String
+  owner     User    @relation(fields: [ownerName], references: [username])
 }
-
-

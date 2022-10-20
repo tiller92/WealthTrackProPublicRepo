@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 
 export default async function handler(req, res) {
     const { first_name, last_name, username, email, password,date } = req.body
+    const currentDate = date
     const hashPWD = await bcrypt.hash(password, 12)
     const user = await prisma.User.create({
         data: {
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
             username: username,
             email: email,
             password: hashPWD,
-            date:date,
+            date:currentDate,
         },
 
     })

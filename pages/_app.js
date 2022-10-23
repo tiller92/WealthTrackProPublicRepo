@@ -7,13 +7,12 @@ import Link from 'next/link';
 
 
 function MyApp({ Component, pageProps }) {
-  // user logic then user context added. Any time home page is loaded
-  
+ // Checks local storage for a logged in user. If the user has not been
+	// authenticed it will bounce back to '/'
   const [user, setUser] = useState(useContext(UsersContext))
   useEffect(()=>{
     localStorage.username ? setUser(localStorage.username) : <Link href={'/'}></Link>
   },[]);
-
 
 
   return(

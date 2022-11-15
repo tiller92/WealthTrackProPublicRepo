@@ -5,7 +5,6 @@ import {AiOutlineDelete} from 'react-icons/ai';
 export default function deleteReal({id,user}){
   const handleDelete = (e) => {
     async function send(){
-      console.log(id)
       const res = await axios.delete('/api/deleteCash', {
         data:{
           id:id
@@ -18,7 +17,6 @@ export default function deleteReal({id,user}){
 send()
 }
     
-
 
   return (
     <>

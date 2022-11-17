@@ -1,6 +1,4 @@
 import axios from "axios"
-import { PrismaClient, prisma } from '@prisma/client'
-import {useRouter}  from 'next/link'
 import {AiOutlineDelete} from 'react-icons/ai';
 
 

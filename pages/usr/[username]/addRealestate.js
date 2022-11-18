@@ -22,9 +22,19 @@ export default function AddStockForm({username}){
     username:username,
   }
   const [formData, setFormData] = useState(initailState)
-   
   const handleChange = (e) => {
-    setFormData(data => ({
+	if(e.target == value){
+		let userInput = e.target.value.split("")
+		for (let i of userInput){
+			let num = parseInt(i)
+			if (isNaN(num) ){
+			  const errorNaNToast = ()=> toast.error('only numbers in the value box')
+			  errorNaNToast()
+                          userInput.splice(i)
+			}
+		}
+	}
+	  setFormData(data => ({
       ...data,
       [e.target.name]: e.target.value,
     }))

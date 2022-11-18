@@ -24,10 +24,20 @@ export default function AddStockForm({username}){
   const [formData, setFormData] = useState(initailState)
    
   const handleChange = (e) => {
+    if(e.target == amount){
+        let userInput = e.target.value.split("")
+	    for(let i of userInput){
+		let num = parseInt(i)
+		    if (isNaN(num)){
+			  const errorToast = ()=>toast.error('Only use numbers')
+			  errorToast()
+		    }
+	    }
+    }
     setFormData(data => ({
-      ...data,
-      [e.target.name]: e.target.value,
-    }))
+    ...data,
+    [e.target.name]: e.target.value,
+	    }))
   }
 
  

@@ -1,10 +1,10 @@
 # todo's
- 1. need to improve my input erros (i.e $ , stuff like that)
- 1. need to handle errors from alphavtage more gracefully 
- 1. user portfolio projections
- 2. user email verification
- 2. more personal finace tools
- 3. email updates for users
+   1. new toast feaure on realesate and cash page is annoying to many alerts 
+   1. need to handle errors from alphavtage more 
+   1. user portfolio projections
+   2. user email verification
+   2. more personal finace tools
+   3. email updates for users
 
 
 

@@ -10,5 +10,6 @@
     #Prisma
     #PG
     #Tailwind
+    #Vercel
     
 
